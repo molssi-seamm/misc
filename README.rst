@@ -20,14 +20,14 @@ Installing SEAMM
 The graphical part of SEAMM is installed in the **seamm** conda
 environment. If you do not have conda (or anaconda) installed, head
 over to Miniconda_ or Anaconda_ and grab the installer, following
-their directions. Minconda_ is a small, stripped down version, which
+their directions. Miniconda_ is a small, stripped down version, which
 is perfectly fine for our use. Anaconda_ comes with many packages
 preinstalled and also a graphical interface, so if you plan to use it
 for your own work it might be more useful. But Anaconda_ is more than
 is needed for SEAMM.
 
 Once you have conda installed, get the *seamm.yml* file from the
-conda_environments/ subfolder. You can download it from GitHub or just
+*conda_environments/* subfolder. You can download it from GitHub or just
 clone this entire repository. Either way, once you have it run the
 conda command to create the environment::
   conda env create -f seamm.yml
@@ -44,11 +44,15 @@ If you chose a different name, use that instead of **seamm**.
 You can start the flowchart editor by typing::
   seamm
 
-There are some sample flowcharts in misc/flowcharts to help you get
+There are some sample flowcharts in *misc/flowcharts* to help you get
 started.
 
 Installing the Compute Engines
 ------------------------------
+**N.B. Currently only Linux and MacOS versions of Packmol and LAMMPS
+are supported by conda-forge. So, at the moment, these instructions
+will not work under Windows.**
+
 The plugins in SEAMM use a number of external executables to accomplish
 their tasks.
    - **seamm_util** and **from_smiles_step** use parts of OpenBabel
@@ -56,7 +60,7 @@ their tasks.
    - **lammps_step** uses LAMMPS and OpenMPI
    - **mopac_step** uses MOPAC
 
-If you want ot run flowcharts using these plugins, you will need to
+If you want to run flowcharts using these plugins, you will need to
 install the correct executables. All of these except MOPAC can be
 installed using the conda environment specified in *seamm-compute.yml*::
   conda env create -f seamm-compute.yml
@@ -70,7 +74,7 @@ After the installation completes, activate the environment::
 There is one more step needed to let SEAMM know the location of the
 executables. Execute the script *find_executables.py* in the
 **seamm-compute** environment::
-  ./seamm-compute.py
+  ./find_executables.py
 
 The script may ask you some questions, but normally it will just run
 to completion, telling you that it created *~/.seamm/packmol.ini*,
@@ -84,7 +88,7 @@ Once you have installed both the **seamm** and **seamm-compute**
 environments, and run the *find_executables.py* script, you can run
 flowcharts. You need to be running in the **seamm** environment and
 can either run the directly from within the SEAMM flowchart editor,
-using the File/Run command, or you can simply execute the
+using the **File/Run** command, or you can simply execute the
 flowchart. For example::
   flowcharts/demos/ar_npt.flow
 
