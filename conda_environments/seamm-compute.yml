@@ -1,0 +1,10 @@
+name: seamm-compute
+channels:
+  - conda-forge
+  - default
+dependencies:
+    # Executables, etc.
+  - openmpi
+  - lammps
+  - packmol
+  - openbabel

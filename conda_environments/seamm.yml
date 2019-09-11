@@ -1,0 +1,44 @@
+name: seamm
+channels:
+  - rdkit
+  - default
+dependencies:
+    # Base depends
+  - python
+  - tk=8.6.7
+  - pip
+  - rdkit
+
+    # other dependencies that are in conda
+  - attrs
+  - colorama
+  - configargparse
+  - cycler
+  - docutils
+  - kiwisolver
+  - matplotlib
+  - packaging
+  - pbr
+  - numpy
+  - pandas
+  - pillow
+  - py-cpuinfo
+  - pyparsing
+  - sqlalchemy
+  - statsmodels
+
+  # Pip-only installs
+  - pip:
+      - seamm
+      - seamm_util
+      - seamm_widgets
+      - seamm_ff_util
+      - cassandra_step
+      - custom_step
+      - forcefield_step
+      - from_smiles_step
+      - lammps_step
+      - loop_step
+      - mopac_step
+      - packmol_step
+      - table_step

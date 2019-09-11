@@ -1,0 +1,411 @@
+#!/usr/bin/env run_flowchart
+!MolSSI flowchart 1.0
+
+# This is a very simple flowchart illustrating MOPAC. Benzene is created from a
+# SMILES string, and then run with MOPAC. The structure is optimized and then a
+# standard thermodynamics calculation is performed. Some of the calculated
+# properties are placed into the table 'results', which is then printed.
+
+{
+    "item": "object",
+    "module": "seamm.flowchart",
+    "class": "Flowchart",
+    "extension": null,
+    "nodes": [
+        {
+            "item": "object",
+            "module": "seamm.start_node",
+            "class": "StartNode",
+            "extension": null,
+            "attributes": {
+                "_uuid": 1,
+                "_title": "Start",
+                "_description": "",
+                "_id": null,
+                "extension": null,
+                "_visited": true,
+                "parameters": null,
+                "x": 150,
+                "y": 35,
+                "w": 200,
+                "h": 50
+            }
+        },
+        {
+            "item": "object",
+            "module": "from_smiles_step.from_smiles",
+            "class": "FromSMILES",
+            "extension": "FromSMILESStep",
+            "attributes": {
+                "_uuid": 267887489823208109664194006199276984346,
+                "_title": "from SMILES",
+                "_description": "",
+                "_id": null,
+                "extension": "FromSMILESStep",
+                "_visited": true,
+                "parameters": {
+                    "__class__": "FromSMILESParameters",
+                    "__module__": "from_smiles_step.from_smiles_parameters",
+                    "smiles string": {
+                        "value": "c1ccccc1",
+                        "units": null
+                    },
+                    "minimize": {
+                        "value": "no",
+                        "units": null
+                    },
+                    "forcefield": {
+                        "value": "UFF",
+                        "units": null
+                    }
+                },
+                "x": 150,
+                "y": 105,
+                "w": 200,
+                "h": 50
+            }
+        },
+        {
+            "item": "object",
+            "module": "mopac_step.mopac",
+            "class": "MOPAC",
+            "extension": "MOPAC",
+            "attributes": {
+                "_data": {},
+                "_uuid": 159233434457165198966919963893308958940,
+                "_title": "MOPAC",
+                "_description": "",
+                "_id": null,
+                "extension": "MOPAC",
+                "_visited": true,
+                "parameters": null,
+                "x": 150,
+                "y": 175,
+                "w": 200,
+                "h": 50
+            },
+            "subflowchart": {
+                "item": "object",
+                "module": "seamm.flowchart",
+                "class": "Flowchart",
+                "extension": null,
+                "nodes": [
+                    {
+                        "item": "object",
+                        "module": "seamm.start_node",
+                        "class": "StartNode",
+                        "extension": null,
+                        "attributes": {
+                            "_uuid": 1,
+                            "_title": "Start",
+                            "_description": "",
+                            "_id": null,
+                            "extension": null,
+                            "_visited": true,
+                            "parameters": null,
+                            "x": 150.0,
+                            "y": 35.0,
+                            "w": 200,
+                            "h": 50
+                        }
+                    },
+                    {
+                        "item": "object",
+                        "module": "mopac_step.optimization",
+                        "class": "Optimization",
+                        "extension": "Optimization",
+                        "attributes": {
+                            "_uuid": 232043177810496069807776503006134339839,
+                            "_title": "Optimization",
+                            "_description": "A structural optimization",
+                            "_id": null,
+                            "extension": "Optimization",
+                            "_visited": true,
+                            "parameters": {
+                                "__class__": "OptimizationParameters",
+                                "__module__": "mopac_step.optimization_parameters",
+                                "structure": {
+                                    "value": "default",
+                                    "units": null
+                                },
+                                "hamiltonian": {
+                                    "value": "PM7",
+                                    "units": null
+                                },
+                                "convergence": {
+                                    "value": "precise",
+                                    "units": null
+                                },
+                                "relative": {
+                                    "value": "0.1",
+                                    "units": null
+                                },
+                                "absolute": {
+                                    "value": "1.0E-07",
+                                    "units": "kcal/mol"
+                                },
+                                "extra keywords": {
+                                    "value": [],
+                                    "units": null
+                                },
+                                "results": {
+                                    "value": {},
+                                    "units": null
+                                },
+                                "create tables": {
+                                    "value": "yes",
+                                    "units": null
+                                },
+                                "method": {
+                                    "value": "default",
+                                    "units": null
+                                },
+                                "gnorm": {
+                                    "value": "1.0",
+                                    "units": "kcal/mol/\u00c5"
+                                },
+                                "cycles": {
+                                    "value": "unlimited",
+                                    "units": null
+                                },
+                                "recalc": {
+                                    "value": "never",
+                                    "units": null
+                                },
+                                "dmax": {
+                                    "value": "0.2",
+                                    "units": null
+                                }
+                            },
+                            "x": 150.0,
+                            "y": 105.0,
+                            "w": 200,
+                            "h": 50,
+                            "_long_header": "",
+                            "keywords": []
+                        }
+                    },
+                    {
+                        "item": "object",
+                        "module": "mopac_step.thermodynamics",
+                        "class": "Thermodynamics",
+                        "extension": "Thermodynamics",
+                        "attributes": {
+                            "_uuid": 188013222465373474710990500187980251721,
+                            "_title": "Thermodynamics",
+                            "_description": "Thermodynamic functions",
+                            "_id": null,
+                            "extension": "Thermodynamics",
+                            "_visited": false,
+                            "parameters": {
+                                "__class__": "ThermodynamicsParameters",
+                                "__module__": "mopac_step.thermodynamics_parameters",
+                                "structure": {
+                                    "value": "default",
+                                    "units": null
+                                },
+                                "hamiltonian": {
+                                    "value": "PM7",
+                                    "units": null
+                                },
+                                "convergence": {
+                                    "value": "normal",
+                                    "units": null
+                                },
+                                "relative": {
+                                    "value": "0.1",
+                                    "units": null
+                                },
+                                "absolute": {
+                                    "value": "1.0E-07",
+                                    "units": "kcal/mol"
+                                },
+                                "extra keywords": {
+                                    "value": [],
+                                    "units": null
+                                },
+                                "results": {
+                                    "value": {
+                                        "AREA": {
+                                            "table": "results",
+                                            "column": "area"
+                                        },
+                                        "DIPOLE": {
+                                            "table": "results",
+                                            "column": "dipole"
+                                        },
+                                        "HEAT_OF_FORMATION": {
+                                            "table": "results",
+                                            "column": "heat_of_formation"
+                                        },
+                                        "IONIZATION_POTENTIAL": {
+                                            "table": "results",
+                                            "column": "ionization_potential"
+                                        },
+                                        "VOLUME": {
+                                            "table": "results",
+                                            "column": "volume"
+                                        },
+                                        "ZERO_POINT_ENERGY": {
+                                            "table": "results",
+                                            "column": "zero_point_energy"
+                                        }
+                                    },
+                                    "units": null
+                                },
+                                "create tables": {
+                                    "value": "yes",
+                                    "units": null
+                                },
+                                "Tmin": {
+                                    "value": "200",
+                                    "units": "K"
+                                },
+                                "Tmax": {
+                                    "value": "400",
+                                    "units": "K"
+                                },
+                                "Tstep": {
+                                    "value": "10",
+                                    "units": "K"
+                                },
+                                "trans": {
+                                    "value": "0",
+                                    "units": null
+                                }
+                            },
+                            "x": 150.0,
+                            "y": 175.0,
+                            "w": 200,
+                            "h": 50,
+                            "_long_header": "",
+                            "keywords": []
+                        }
+                    }
+                ],
+                "edges": [
+                    {
+                        "item": "edge",
+                        "node1": 1,
+                        "node2": 232043177810496069807776503006134339839,
+                        "edge_type": "execution",
+                        "edge_subtype": "next",
+                        "attributes": {
+                            "anchor1": "s",
+                            "anchor2": "n",
+                            "coords": [
+                                150,
+                                60,
+                                150,
+                                80
+                            ],
+                            "arrow_id": 32
+                        }
+                    },
+                    {
+                        "item": "edge",
+                        "node1": 232043177810496069807776503006134339839,
+                        "node2": 188013222465373474710990500187980251721,
+                        "edge_type": "execution",
+                        "edge_subtype": "next",
+                        "attributes": {
+                            "anchor1": "s",
+                            "anchor2": "n",
+                            "coords": [
+                                150,
+                                130,
+                                150,
+                                150
+                            ],
+                            "arrow_id": 53
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "item": "object",
+            "module": "table_step.table",
+            "class": "Table",
+            "extension": "Table",
+            "attributes": {
+                "_method": "print",
+                "name": "results",
+                "filename": "",
+                "index_column": "default",
+                "tmp_columns": [],
+                "column_index": "",
+                "row_index": "",
+                "value": "",
+                "variable_name": "",
+                "_uuid": 284526908988222275671611747546041664611,
+                "_title": "Table",
+                "_description": "",
+                "_id": null,
+                "extension": "Table",
+                "_visited": true,
+                "parameters": null,
+                "x": 150,
+                "y": 245,
+                "w": 200,
+                "h": 50
+            }
+        }
+    ],
+    "edges": [
+        {
+            "item": "edge",
+            "node1": 1,
+            "node2": 267887489823208109664194006199276984346,
+            "edge_type": "execution",
+            "edge_subtype": "next",
+            "attributes": {
+                "anchor1": "s",
+                "anchor2": "n",
+                "coords": [
+                    150,
+                    60,
+                    150,
+                    80
+                ],
+                "arrow_id": 115
+            }
+        },
+        {
+            "item": "edge",
+            "node1": 267887489823208109664194006199276984346,
+            "node2": 159233434457165198966919963893308958940,
+            "edge_type": "execution",
+            "edge_subtype": "next",
+            "attributes": {
+                "anchor1": "s",
+                "anchor2": "n",
+                "coords": [
+                    150,
+                    130,
+                    150,
+                    150
+                ],
+                "arrow_id": 119
+            }
+        },
+        {
+            "item": "edge",
+            "node1": 159233434457165198966919963893308958940,
+            "node2": 284526908988222275671611747546041664611,
+            "edge_type": "execution",
+            "edge_subtype": "next",
+            "attributes": {
+                "anchor1": "s",
+                "anchor2": "n",
+                "coords": [
+                    150,
+                    200,
+                    150,
+                    220
+                ],
+                "arrow_id": 172
+            }
+        }
+    ]
+}

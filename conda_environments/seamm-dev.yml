@@ -1,0 +1,41 @@
+name: seamm-dev
+channels:
+  - rdkit
+  - default
+dependencies:
+    # Base depends
+  - python
+  - tk=8.6.7
+  - pip
+  - rdkit
+  
+    # other dependencies that are in conda
+  - attrs
+  - colorama
+  - configargparse
+  - cycler
+  - docutils
+  - kiwisolver
+  - matplotlib
+  - packaging
+  - pbr
+  - numpy
+  - pandas
+  - pillow
+  - py-cpuinfo
+  - pyparsing
+  - sqlalchemy
+  - statsmodels
+
+    # Needed for development
+  - coverage
+  - flake8
+  - pytest
+  - pytest-runner
+  - sphinx
+  - tox
+  - twine
+
+  # Pip-only installs
+  - pip:
+      - yapf
