@@ -84,7 +84,7 @@ def OpenBabel(prompt=True):
 
     directory = os.path.dirname(os.path.expanduser(filename))
     if not os.path.exists(directory):
-        os.mkdir(directory, exist_ok=True)
+        os.makedirs(directory, exist_ok=True)
 
     if os.path.exists(os.path.expanduser(filename)):
         answer = input(
@@ -139,7 +139,7 @@ def LAMMPS(prompt=True):
 
     directory = os.path.dirname(os.path.expanduser(filename))
     if not os.path.exists(directory):
-        os.mkdir(directory, exist_ok=True)
+        os.makedirs(directory, exist_ok=True)
 
     if os.path.exists(os.path.expanduser(filename)):
         answer = input(
@@ -228,7 +228,7 @@ def Packmol(prompt=True):
 
     directory = os.path.dirname(os.path.expanduser(filename))
     if not os.path.exists(directory):
-        os.mkdir(directory, exist_ok=True)
+        os.makedirs(directory, exist_ok=True)
 
     if os.path.exists(os.path.expanduser(filename)):
         answer = input(
