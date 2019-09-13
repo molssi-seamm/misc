@@ -60,6 +60,8 @@ their tasks.
    - **lammps_step** uses LAMMPS and OpenMPI
    - **mopac_step** uses MOPAC
 
+Installing LAMMPS, OpenBabel and Packmol
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If you want to run flowcharts using these plugins, you will need to
 install the correct executables. All of these except MOPAC can be
 installed using the conda environment specified in *seamm-compute.yml*::
@@ -68,6 +70,21 @@ installed using the conda environment specified in *seamm-compute.yml*::
 Of course, if you want a name other than the default **seamm-compute**
 you can override the default with the -n option.
 
+Installing MOPAC
+~~~~~~~~~~~~~~~~
+Head to the MOPAC_ homepage and click on one of the download links in
+the section on MOPAC2016. MOPAC is free for academics, so if you are
+at a university or school you can request a copy and license. Follow
+the instructions included with the download for installing MOPAC and
+activating MOPAC.
+
+The path to the MOPAC executable is stored in the next step in the
+file ~/.seamm/mopac.ini. If MOPAC is not in your path you can have the
+script create the file, then edit ~/.seamm/mopac.ini to put in the
+correct path -- usually /opt/mopac/MOPAC2016.exe on Linux or Windows.
+
+Finishing Up
+~~~~~~~~~~~~
 After the installation completes, activate the environment::
   conda activate seamm-compute
 
@@ -130,3 +147,4 @@ the output goes, etc.::
   
 .. _Miniconda: https://docs.conda.io/en/latest/miniconda.html
 .. _Anaconda: https://docs.anaconda.com/anaconda/
+.. _MOPAC: http://openmopac.net/index.html

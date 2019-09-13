@@ -33,9 +33,25 @@ dependencies:
   - pytest
   - pytest-runner
   - sphinx
-  - tox
   - twine
 
   # Pip-only installs
   - pip:
+        # SEAMM
+      - seamm
+      - seamm_util
+      - seamm_widgets
+      - seamm_ff_util
+      - cassandra_step
+      - custom_step
+      - forcefield_step
+      - from_smiles_step
+      - lammps_step
+      - loop_step
+      - mopac_step
+      - packmol_step
+      - table_step
+
+        # Needed for development
+      - tox
       - yapf

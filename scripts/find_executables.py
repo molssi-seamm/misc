@@ -38,7 +38,11 @@ def OpenBabel(prompt=True):
     missing = []
     directories = []
     for exe in exes:
-        path = os.path.abspath(shutil.which(exe))
+        path = shutil.which(exe)
+        if not path:
+            path = shutil.which(exe + '.exe')
+        if path:
+            path = os.path.abspath(path)
         paths[exe] = path
         if path is None:
             missing.append(exe)
@@ -122,7 +126,11 @@ def LAMMPS(prompt=True):
     paths = {}
     missing = []
     for exe in exes:
-        path = os.path.abspath(shutil.which(exe))
+        path = shutil.which(exe)
+        if not path:
+            path = shutil.which(exe + '.exe')
+        if path:
+            path = os.path.abspath(path)
         paths[exe] = path
         if path is None:
             missing.append(exe)
@@ -182,7 +190,11 @@ def Packmol(prompt=True):
     missing = []
     directories = []
     for exe in exes:
-        path = os.path.abspath(shutil.which(exe))
+        path = shutil.which(exe)
+        if not path:
+            path = shutil.which(exe + '.exe')
+        if path:
+            path = os.path.abspath(path)
         paths[exe] = path
         if path is None:
             missing.append(exe)
@@ -251,9 +263,71 @@ def Packmol(prompt=True):
     print('Wrote {}\n'.format(filename))
 
 
+def MOPAC(prompt=True):
+    """Find the path to the MOPAC executables and set up the
+    configuration file mopac.ini in the appropriate location.
+    """
+
+    exes = [
+        'MOPAC2016'
+    ]
+
+    # Find the paths to the executables, noting ones that are missing
+    paths = {}
+    missing = []
+    for exe in exes:
+        path = shutil.which(exe)
+        if not path:
+            path = shutil.which(exe + '.exe')
+        if path:
+            path = os.path.abspath(path)
+        paths[exe] = path
+        if path is None:
+            missing.append(exe)
+
+    if len(missing) > 0:
+        print("The following executables were not found:\n\t")
+        print('\n\t'.join(missing))
+        answer = input('Do you want to continue? [y]/n: ')
+        print()
+        if answer != '' and answer[0].lower() != 'y':
+            return
+
+    path['MOPAC2016'] = 'MOPAC2016.exe'
+
+    filename = '~/.seamm/mopac.ini'
+
+    directory = os.path.dirname(os.path.expanduser(filename))
+    if not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
+
+    if os.path.exists(os.path.expanduser(filename)):
+        answer = input(
+            'The configuration file {} exists. Shall I overwrite it? [y]/n: '
+            .format(filename)
+        )
+        if answer != '' and answer[0].lower() != 'y':
+            return
+
+    with open(os.path.expanduser(filename), 'w') as fd:
+        fd.write(
+            (
+                '# MOPAC executable options.\n'
+                '# These may be overridden by the plugin using MOPAC,\n'
+                '# i.e. mopac_step.ini or by the general seamm.ini file.\n'
+                '\n'
+                'mopac-exe = {MOPAC2016}\n'
+                'mopac-num-threads = default\n'
+                'mopac-mkl-num-threads = default\n'
+            ).format(**paths)
+        )
+    print('Wrote {}\n'.format(filename))
+
+
 print(__name__)
 if __name__ == "__main__":
     print('calling packmol')
     Packmol()
     OpenBabel()
     LAMMPS()
+    MOPAC()
