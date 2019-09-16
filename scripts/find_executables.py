@@ -293,7 +293,7 @@ def MOPAC(prompt=True):
         if answer != '' and answer[0].lower() != 'y':
             return
 
-    path['MOPAC2016'] = 'MOPAC2016.exe'
+    paths['MOPAC2016'] = 'MOPAC2016.exe'
 
     filename = '~/.seamm/mopac.ini'
 
