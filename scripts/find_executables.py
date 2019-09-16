@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 
 import os
-import os.path
 import shutil
 
+import subprocess
 
-def OpenBabel(prompt=True):
-    """Find the path to the OpenBabel executables and set up the
-    configuration file openbabel.ini in the appropriate location.
-    """
-
-    exes = [
+openbabel = {
+    "name": "openbabel",
+    
+    "exes": [
         'babel',
         'obabel',
         'obchiral',
@@ -31,165 +29,78 @@ def OpenBabel(prompt=True):
         'obtautomer',
         'obthermo',
         'roundtrip',
-    ]
+    ],
 
-    # Find the paths to the executables, noting ones that are missing
-    paths = {}
-    missing = []
-    directories = []
-    for exe in exes:
-        path = shutil.which(exe)
-        if not path:
-            path = shutil.which(exe + '.exe')
-        if path:
-            path = os.path.abspath(path)
-        paths[exe] = path
-        if path is None:
-            missing.append(exe)
-        else:
-            directory = os.path.dirname(path)
-            if directory not in directories:
-                directories.append(directory)
-
-    if len(missing) > 0:
-        print("The following executables were not found:\n\t")
-        print('\n\t'.join(missing))
-        answer = input('Do you want to continue? [y]/n: ')
-        print()
-        if answer != '' and answer[0].lower() != 'y':
-            return
-
-    if len(directories) == 1:
-        dindex = 0
-    elif len(directories) > 1:
-        print("More than one path was found:")
-        i = 0
-        for directory in directories:
-            i += 1
-            print('\t{}: {}'.format(i, directory))
-        answer = input(
-            'Which do you want to use? 1-{}, return to exit:'.format(i)
-        )
-        if answer == '':
-            return
-        try:
-            answer = int(answer)
-        except:
-            return
-        if answer < 1 or answer > i:
-            print('You must enter an number between 1 and {}'.format(i))
-            return
-        dindex = answer - 1
-    else:
-        print('There were no directories in the paths!')
-        return
-
-    filename = '~/.seamm/openbabel.ini'
-
-    directory = os.path.dirname(os.path.expanduser(filename))
-    if not os.path.exists(directory):
-        os.makedirs(directory, exist_ok=True)
-
-    if os.path.exists(os.path.expanduser(filename)):
-        answer = input(
-            'The configuration file {} exists. Shall I overwrite it? [y]/n: '
-            .format(filename)
-        )
-        if answer != '' and answer[0].lower() != 'y':
-            return
-
-    with open(os.path.expanduser(filename), 'w') as fd:
-        fd.write(
-            (
-                '# OpenBabel executable options.\n'
-                '# These may be overridden by the plugin using Packmol, i.e.\n'
-                '# from_smiles_step.ini or by the general seamm.ini file.\n'
-                '\n'
-                'openbabel-path = {}'
-            ).format(directories[dindex])
-        )
-    print('Wrote {}\n'.format(filename))
+    "ini_text" : """'''# OpenBabel executable options.
+                # These may be overridden by the plugin using Packmol,
+                # i.e. from_smiles_step.ini or by the general seamm.ini file.
+                
+                openbabel-path = {}'''.format(directories[dindex])""",
+}
 
 
-def LAMMPS(prompt=True):
-    """Find the path to the LAMMPS executables and set up the
-    configuration file lammps.ini in the appropriate location.
-    """
-
-    exes = [
+lammps = {
+    "name": "lammps",
+    
+    "exes" : [
         'mpiexec',
         'lmp_serial',
         'lmp_mpi'
-    ]
+    ],
 
-    # Find the paths to the executables, noting ones that are missing
-    paths = {}
-    missing = []
-    for exe in exes:
-        path = shutil.which(exe)
-        if not path:
-            path = shutil.which(exe + '.exe')
-        if path:
-            path = os.path.abspath(path)
-        paths[exe] = path
-        if path is None:
-            missing.append(exe)
+    "ini_text": """'''# LAMMPS executable options.
+                # These may be overridden by the plugin using LAMMPS, ie.
+                # lammps_step.ini or by the general seamm.ini file.
+                
+                lammps-use-mpi = True
+                lammps-mpi-np = default
+                lammps-mpi-max-np = default
+                lammps-mpiexec = {mpiexec}
+                lammps-serial = {lmp_serial}
+                lammps-mpi = {lmp_mpi}
+                lammps-atoms-per-core = 1000'''.format(**paths)""",
+}
 
-    if len(missing) > 0:
-        print("The following executables were not found:\n\t")
-        print('\n\t'.join(missing))
-        answer = input('Do you want to continue? [y]/n: ')
-        print()
-        if answer != '' and answer[0].lower() != 'y':
-            return
-
-    filename = '~/.seamm/lammps.ini'
-
-    directory = os.path.dirname(os.path.expanduser(filename))
-    if not os.path.exists(directory):
-        os.makedirs(directory, exist_ok=True)
-
-    if os.path.exists(os.path.expanduser(filename)):
-        answer = input(
-            'The configuration file {} exists. Shall I overwrite it? [y]/n: '
-            .format(filename)
-        )
-        if answer != '' and answer[0].lower() != 'y':
-            return
-
-    with open(os.path.expanduser(filename), 'w') as fd:
-        fd.write(
-            (
-                '# LAMMPS executable options.\n'
-                '# These may be overridden by the plugin using LAMMPS, ie.\n'
-                '# lammps_step.ini or by the general seamm.ini file.\n'
-                '\n'
-                'lammps-use-mpi = True\n'
-                'lammps-mpi-np = default\n'
-                'lammps-mpi-max-np = default\n'
-                'lammps-mpiexec = {mpiexec}\n'
-                'lammps-serial = {lmp_serial}\n'
-                'lammps-mpi = {lmp_mpi}\n'
-                'lammps-atoms-per-core = 1000\n'
-            ).format(**paths)
-        )
-    print('Wrote {}\n'.format(filename))
-
-
-def Packmol(prompt=True):
-    """Find the path to the Packmol executable and set up the
-    configuration file packmol.ini in the appropriate location.
-    """
-
-    exes = [
+packmol = {
+    "name": "packmol",
+    
+    "exes": [
         'packmol'
-    ]
+    ],
+
+    "ini_text": """ '''# Packmol executable options.
+                # These may be overridden by the plugin using Packmol,
+                # i.e. packmol_step.ini or by the general seamm.ini file.
+                
+                packmol-path = {}'''.format(directories[dindex])"""
+}
+
+mopac = {
+    "name": "mopac",
+
+    "exes": [
+        'MOPAC2016'
+    ],
+
+    "ini_text" : """ ''''# MOPAC executable options.
+                # These may be overridden by the plugin using MOPAC,
+                # i.e. mopac_step.ini or by the general seamm.ini file.
+                
+                mopac-exe = {MOPAC2016}
+                mopac-num-threads = default
+                mopac-mkl-num-threads = default'''.format(**paths)""",
+}
+
+def add_program(program_config, prompt=True):
+    """Find the path to the OpenBabel executables and set up the
+    configuration file openbabel.ini in the appropriate location.
+    """
 
     # Find the paths to the executables, noting ones that are missing
     paths = {}
     missing = []
     directories = []
-    for exe in exes:
+    for exe in program_config['exes']:
         path = shutil.which(exe)
         if not path:
             path = shutil.which(exe + '.exe')
@@ -206,10 +117,24 @@ def Packmol(prompt=True):
     if len(missing) > 0:
         print("The following executables were not found:\n\t")
         print('\n\t'.join(missing))
-        answer = input('Do you want to continue? [y]/n: ')
+        answer = input('Continue configuring {}? [y]/n: '.format(program_config["name"]))
         print()
         if answer != '' and answer[0].lower() != 'y':
             return
+        else:
+            for missing_executable in missing:
+                executable_location = input('Please input a location for {} (ie, leave off the executable name). Leave blank to configure later: \t'.format(missing_executable))
+                if executable_location is None:
+                    print('No executable location given for {}. Continuing...'.format(missing_executable))
+                else:
+                    # Construct given path
+                    exe_path = os.path.join(executable_location, missing_executable+'.exe')
+                    # Check that executable exists at this location.
+                    if os.path.exists(exe_path):
+                        directories.append(executable_location)
+                        paths[exe] = exe_path
+    
+    directories = list(set(directories))
 
     if len(directories) == 1:
         dindex = 0
@@ -229,14 +154,14 @@ def Packmol(prompt=True):
         except:
             return
         if answer < 1 or answer > i:
-            print('You must enter an number between 1 and {}'.format(i))
+            print('You must enter a number between 1 and {}'.format(i))
             return
         dindex = answer - 1
     else:
         print('There were no directories in the paths!')
         return
 
-    filename = '~/.seamm/packmol.ini'
+    filename = '~/.seamm/{}.ini'.format(program_config['name'])
 
     directory = os.path.dirname(os.path.expanduser(filename))
     if not os.path.exists(directory):
@@ -251,83 +176,15 @@ def Packmol(prompt=True):
             return
 
     with open(os.path.expanduser(filename), 'w') as fd:
-        fd.write(
-            (
-                '# Packmol executable options.\n'
-                '# These may be overridden by the plugin using Packmol,\n'
-                '# i.e. packmol_step.ini or by the general seamm.ini file.\n'
-                '\n'
-                'packmol-path = {}'
-            ).format(directories[dindex])
-        )
+        write_string = eval(program_config["ini_text"])
+        fd.write(write_string)
+
     print('Wrote {}\n'.format(filename))
-
-
-def MOPAC(prompt=True):
-    """Find the path to the MOPAC executables and set up the
-    configuration file mopac.ini in the appropriate location.
-    """
-
-    exes = [
-        'MOPAC2016'
-    ]
-
-    # Find the paths to the executables, noting ones that are missing
-    paths = {}
-    missing = []
-    for exe in exes:
-        path = shutil.which(exe)
-        if not path:
-            path = shutil.which(exe + '.exe')
-        if path:
-            path = os.path.abspath(path)
-        paths[exe] = path
-        if path is None:
-            missing.append(exe)
-
-    if len(missing) > 0:
-        print("The following executables were not found:\n\t")
-        print('\n\t'.join(missing))
-        answer = input('Do you want to continue? [y]/n: ')
-        print()
-        if answer != '' and answer[0].lower() != 'y':
-            return
-
-    path['MOPAC2016'] = 'MOPAC2016.exe'
-
-    filename = '~/.seamm/mopac.ini'
-
-    directory = os.path.dirname(os.path.expanduser(filename))
-    if not os.path.exists(directory):
-        os.makedirs(directory, exist_ok=True)
-
-    if os.path.exists(os.path.expanduser(filename)):
-        answer = input(
-            'The configuration file {} exists. Shall I overwrite it? [y]/n: '
-            .format(filename)
-        )
-        if answer != '' and answer[0].lower() != 'y':
-            return
-
-    with open(os.path.expanduser(filename), 'w') as fd:
-        fd.write(
-            (
-                '# MOPAC executable options.\n'
-                '# These may be overridden by the plugin using MOPAC,\n'
-                '# i.e. mopac_step.ini or by the general seamm.ini file.\n'
-                '\n'
-                'mopac-exe = {MOPAC2016}\n'
-                'mopac-num-threads = default\n'
-                'mopac-mkl-num-threads = default\n'
-            ).format(**paths)
-        )
-    print('Wrote {}\n'.format(filename))
-
 
 print(__name__)
 if __name__ == "__main__":
     print('calling packmol')
-    Packmol()
-    OpenBabel()
-    LAMMPS()
-    MOPAC()
+    add_program(packmol)
+    add_program(openbabel)
+    add_program(lammps)
+    add_program(mopac)
