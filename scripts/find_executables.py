@@ -3,8 +3,6 @@
 import os
 import shutil
 
-import subprocess
-
 openbabel = {
     "name": "openbabel",
     
@@ -96,6 +94,21 @@ def add_program(program_config, prompt=True):
     configuration file openbabel.ini in the appropriate location.
     """
 
+    # Check if config file exists for program already
+    filename = '~/.seamm/{}.ini'.format(program_config['name'])
+
+    directory = os.path.dirname(os.path.expanduser(filename))
+    if not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
+
+    if os.path.exists(os.path.expanduser(filename)):
+        answer = input(
+            'The configuration file {} exists. Shall I overwrite it? [y]/n: '
+            .format(filename)
+        )
+        if answer != '' and answer[0].lower() != 'y':
+            return
+
     # Find the paths to the executables, noting ones that are missing
     paths = {}
     missing = []
@@ -123,16 +136,21 @@ def add_program(program_config, prompt=True):
             return
         else:
             for missing_executable in missing:
-                executable_location = input('Please input a location for {} (ie, leave off the executable name). Leave blank to configure later: \t'.format(missing_executable))
-                if executable_location is None:
-                    print('No executable location given for {}. Continuing...'.format(missing_executable))
-                else:
-                    # Construct given path
-                    exe_path = os.path.join(executable_location, missing_executable+'.exe')
-                    # Check that executable exists at this location.
-                    if os.path.exists(exe_path):
-                        directories.append(executable_location)
-                        paths[exe] = exe_path
+                while True:
+                    executable_location = input('Please input a location for {} (ie, leave off the executable name). Leave blank to configure later: \t'.format(missing_executable))
+                    if executable_location == '':
+                        print('No executable location given for {}. Continuing...'.format(missing_executable))
+                        break
+                    else:
+                        # Construct given path
+                        exe_path = os.path.join(executable_location, missing_executable+'.exe')
+                        # Check that executable exists at this location.
+                        if os.path.exists(exe_path):
+                            directories.append(executable_location)
+                            paths[exe] = exe_path
+                            break
+                        else:
+                            print('Executable for {} not found at {}. Please try again.'.format(missing_executable, executable_location))
     
     directories = list(set(directories))
 
@@ -160,20 +178,6 @@ def add_program(program_config, prompt=True):
     else:
         print('There were no directories in the paths!')
         return
-
-    filename = '~/.seamm/{}.ini'.format(program_config['name'])
-
-    directory = os.path.dirname(os.path.expanduser(filename))
-    if not os.path.exists(directory):
-        os.makedirs(directory, exist_ok=True)
-
-    if os.path.exists(os.path.expanduser(filename)):
-        answer = input(
-            'The configuration file {} exists. Shall I overwrite it? [y]/n: '
-            .format(filename)
-        )
-        if answer != '' and answer[0].lower() != 'y':
-            return
 
     with open(os.path.expanduser(filename), 'w') as fd:
         write_string = eval(program_config["ini_text"])
