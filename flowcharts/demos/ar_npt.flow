@@ -1,33 +1,5 @@
 #!/usr/bin/env run_flowchart
 !MolSSI flowchart 1.0
-
-# This is a simple demonstration flowchart that creates a fluid box containing
-# 1000 atoms of Argon. This is equilibrated using a LAMMPS NVT stage and then a
-# production run of NPT dynamics is used to predict the density.
-#
-# The state point is:
-#    T = 130 K
-#    P = 100 atm
-#
-# The NIST fluids database gives the following experimental results for this
-# point:
-#     Temperature  130.0      K
-#        Pressure  100.0      atm
-#         Density    1.1500   g/ml
-#          Volume    0.86955  ml/g
-# Internal Energy   -2.9426   kJ/mol
-#        Enthalpy   -2.5907   kJ/mol
-#         Entropy   71.604    J/mol*K
-#              Cv   17.938    J/mol*K
-#              Cp   49.154    J/mol*K
-#      Sound Spd.  604.72     m/s
-#   Joule-Thomson   -0.016437 F/atm
-#       Viscosity  105.07     uPa*s
-#    Therm. Cond.    0.082251 W/m*K
-#           Phase   liquid
-#
-# https://webbook.nist.gov/cgi/fluid.cgi?P=100&TLow=130&THigh=130&TInc=10&Digits=5&ID=C7440371&Action=Load&Type=IsoBar&TUnit=K&PUnit=atm&DUnit=g%2Fml&HUnit=kJ%2Fmol&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&RefState=DEF
-
 {
     "item": "object",
     "module": "seamm.flowchart",
@@ -42,7 +14,7 @@
             "attributes": {
                 "_uuid": 1,
                 "_title": "Start",
-                "_description": "",
+                "_description": "This is a simple demonstration flowchart that creates a fluid box containing\n 1000 atoms of Argon. This is equilibrated using a LAMMPS NVT stage and then a\n production run of NPT dynamics is used to predict the density.\n\n The state point is:\n    T = 130 K\n    P = 100 atm\n\n The NIST fluids database gives the following experimental results for this\n point:\n     Temperature  130.0      K\n        Pressure  100.0      atm\n         Density    1.1500   g/ml\n          Volume    0.86955  ml/g\n Internal Energy   -2.9426   kJ/mol\n        Enthalpy   -2.5907   kJ/mol\n         Entropy   71.604    J/mol*K\n              Cv   17.938    J/mol*K\n              Cp   49.154    J/mol*K\n      Sound Spd.  604.72     m/s\n   Joule-Thomson   -0.016437 F/atm\n       Viscosity  105.07     uPa*s\n    Therm. Cond.    0.082251 W/m*K\n           Phase   liquid\n\n https://webbook.nist.gov/cgi/fluid.cgi?P=100&TLow=130&THigh=130&TInc=10&Digits=5&ID=C7440371&Action=Load&Type=IsoBar&TUnit=K&PUnit=atm&DUnit=g%2Fml&HUnit=kJ%2Fmol&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&RefState=DEF",
                 "_id": null,
                 "extension": null,
                 "_visited": true,

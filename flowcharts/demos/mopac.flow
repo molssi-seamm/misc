@@ -1,11 +1,6 @@
 #!/usr/bin/env run_flowchart
 !MolSSI flowchart 1.0
 
-# This is a very simple flowchart illustrating MOPAC. Benzene is created from a
-# SMILES string, and then run with MOPAC. The structure is optimized and then a
-# standard thermodynamics calculation is performed. Some of the calculated
-# properties are placed into the table 'results', which is then printed.
-
 {
     "item": "object",
     "module": "seamm.flowchart",
@@ -20,7 +15,7 @@
             "attributes": {
                 "_uuid": 1,
                 "_title": "Start",
-                "_description": "",
+                "_description": "This is a very simple flowchart illustrating MOPAC. Benzene is created from a\n SMILES string, and then run with MOPAC. The structure is optimized and then a\n standard thermodynamics calculation is performed. Some of the calculated\n properties are placed into the table 'results', which is then printed.",
                 "_id": null,
                 "extension": null,
                 "_visited": true,

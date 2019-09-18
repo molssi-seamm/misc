@@ -1,17 +1,6 @@
 #!/usr/bin/env run_flowchart
 !MolSSI flowchart 1.0
 
-# This flowchart illustrates looping over a table and adding calculated results
-# to the table. The initial table is created using a custom Python stage in
-# order to make this flowchart self-contained. Normally one would input the
-# table. The table has columns for the name of the molecule, its SMILES
-# representation, and the experimental heat of formation from the NIST Webbook.
-#
-# The loop creates each structure from the SMILES string, then runs a MOPAC
-# optimization. Various results such as the heat of formation and ionization
-# potential are added to the table, and each row is printed as the iterations
-# progress. Finally at the end the table is saved and printed in full.
-
 {
     "item": "object",
     "module": "seamm.flowchart",
@@ -26,7 +15,7 @@
             "attributes": {
                 "_uuid": 1,
                 "_title": "Start",
-                "_description": "",
+                "_description": "This flowchart illustrates looping over a table and adding calculated results\n to the table. The initial table is created using a custom Python stage in\n order to make this flowchart self-contained. Normally one would input the\n table. The table has columns for the name of the molecule, its SMILES\n representation, and the experimental heat of formation from the NIST Webbook.\n\n The loop creates each structure from the SMILES string, then runs a MOPAC\n optimization. Various results such as the heat of formation and ionization\n potential are added to the table, and each row is printed as the iterations\n progress. Finally at the end the table is saved and printed in full.",
                 "_id": null,
                 "extension": null,
                 "_visited": true,

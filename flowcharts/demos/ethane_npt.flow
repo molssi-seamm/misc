@@ -1,36 +1,6 @@
 #!/usr/bin/env run_flowchart
 !MolSSI flowchart 1.0
 
-
-# This is a simple demonstration flowchart that creates a fluid box containing
-# ethane molecules with a total of about 1000 atoms. This is equilibrated using
-# a LAMMPS NVT stage and then a production run of NPT dynamics is used to
-# predict the density. The temperature is defined in a custom Python stage using
-# the variable 'T', which is then used in LAMMPS to define the state.
-#
-# The state point is:
-#    T = 120 K
-#    P = 1 atm
-#
-# The NIST fluids database gives the following experimental results for this
-# point:
-#     Temperature  120.0      K
-#        Pressure    1.0      atm
-#         Density    0.61935  g/ml
-#          Volume    1.6146   ml/g
-# Internal Energy   -4.5728   kJ/mol
-#        Enthalpy   -4.5679   kJ/mol
-#         Entropy  -30.424    J/mol*K
-#              Cv   46.146    J/mol*K
-#              Cp   70.518    J/mol*K
-#      Sound Spd. 1796.0      m/s
-#   Joule-Thomson   -0.098615 F/atm
-#       Viscosity  488.49     uPa*s
-#    Therm. Cond.    0.2306   W/m*K
-#           Phase   liquid
-#
-# https://webbook.nist.gov/cgi/fluid.cgi?P=1&TLow=95&THigh=195&TInc=5&Digits=5&ID=C74840&Action=Load&Type=IsoBar&TUnit=K&PUnit=atm&DUnit=g%2Fml&HUnit=kJ%2Fmol&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&RefState=DEF
-
 {
     "item": "object",
     "module": "seamm.flowchart",
@@ -45,7 +15,7 @@
             "attributes": {
                 "_uuid": 1,
                 "_title": "Start",
-                "_description": "",
+                "_description": "This is a simple demonstration flowchart that creates a fluid box containing\n ethane molecules with a total of about 1000 atoms. This is equilibrated using\n a LAMMPS NVT stage and then a production run of NPT dynamics is used to\n predict the density. The temperature is defined in a custom Python stage using\n the variable 'T', which is then used in LAMMPS to define the state.\n\n The state point is:\n    T = 120 K\n    P = 1 atm\n\n The NIST fluids database gives the following experimental results for this\n point:\n     Temperature  120.0      K\n        Pressure    1.0      atm\n         Density    0.61935  g/ml\n          Volume    1.6146   ml/g\n Internal Energy   -4.5728   kJ/mol\n        Enthalpy   -4.5679   kJ/mol\n         Entropy  -30.424    J/mol*K\n              Cv   46.146    J/mol*K\n              Cp   70.518    J/mol*K\n      Sound Spd. 1796.0      m/s\n   Joule-Thomson   -0.098615 F/atm\n       Viscosity  488.49     uPa*s\n    Therm. Cond.    0.2306   W/m*K\n           Phase   liquid\n\n https://webbook.nist.gov/cgi/fluid.cgi?P=1&TLow=95&THigh=195&TInc=5&Digits=5&ID=C74840&Action=Load&Type=IsoBar&TUnit=K&PUnit=atm&DUnit=g%2Fml&HUnit=kJ%2Fmol&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&RefState=DEF",
                 "_id": null,
                 "extension": null,
                 "_visited": true,
