@@ -30,10 +30,10 @@ openbabel = {
     ],
 
     "ini_text" : """'''# OpenBabel executable options.
-                # These may be overridden by the plugin using Packmol,
-                # i.e. from_smiles_step.ini or by the general seamm.ini file.
-                
-                openbabel-path = {}'''.format(directories[dindex])""",
+# These may be overridden by the plugin using Packmol,
+# i.e. from_smiles_step.ini or by the general seamm.ini file.
+
+openbabel-path = {}'''.format(directories[dindex])""",
 }
 
 
@@ -47,16 +47,16 @@ lammps = {
     ],
 
     "ini_text": """'''# LAMMPS executable options.
-                # These may be overridden by the plugin using LAMMPS, ie.
-                # lammps_step.ini or by the general seamm.ini file.
-                
-                lammps-use-mpi = True
-                lammps-mpi-np = default
-                lammps-mpi-max-np = default
-                lammps-mpiexec = {mpiexec}
-                lammps-serial = {lmp_serial}
-                lammps-mpi = {lmp_mpi}
-                lammps-atoms-per-core = 1000'''.format(**paths)""",
+# These may be overridden by the plugin using LAMMPS, ie.
+# lammps_step.ini or by the general seamm.ini file.
+
+lammps-use-mpi = True
+lammps-mpi-np = default
+lammps-mpi-max-np = default
+lammps-mpiexec = {mpiexec}
+lammps-serial = {lmp_serial}
+lammps-mpi = {lmp_mpi}
+lammps-atoms-per-core = 1000'''.format(**paths)""",
 }
 
 packmol = {
@@ -67,10 +67,10 @@ packmol = {
     ],
 
     "ini_text": """ '''# Packmol executable options.
-                # These may be overridden by the plugin using Packmol,
-                # i.e. packmol_step.ini or by the general seamm.ini file.
-                
-                packmol-path = {}'''.format(directories[dindex])"""
+# These may be overridden by the plugin using Packmol,
+# i.e. packmol_step.ini or by the general seamm.ini file.
+
+packmol-path = {}'''.format(directories[dindex])"""
 }
 
 mopac = {
@@ -80,13 +80,13 @@ mopac = {
         'MOPAC2016'
     ],
 
-    "ini_text" : """ ''''# MOPAC executable options.
-                # These may be overridden by the plugin using MOPAC,
-                # i.e. mopac_step.ini or by the general seamm.ini file.
-                
-                mopac-exe = {MOPAC2016}
-                mopac-num-threads = default
-                mopac-mkl-num-threads = default'''.format(**paths)""",
+    "ini_text" : """ '''# MOPAC executable options.
+# These may be overridden by the plugin using MOPAC,
+# i.e. mopac_step.ini or by the general seamm.ini file.
+
+mopac-exe = {MOPAC2016}
+mopac-num-threads = default
+mopac-mkl-num-threads = default'''.format(**paths)""",
 }
 
 def add_program(program_config, prompt=True):
