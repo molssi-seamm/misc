@@ -53,5 +53,6 @@ dependencies:
       - table_step
 
         # Needed for development
+      - cookiecutter
       - tox
       - yapf
