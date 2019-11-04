@@ -15,6 +15,7 @@ dependencies:
   - configargparse
   - cycler
   - docutils
+  - fasteners
   - kiwisolver
   - matplotlib
   - packaging
