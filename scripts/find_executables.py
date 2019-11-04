@@ -68,7 +68,7 @@ def OpenBabel(prompt=True):
             i += 1
             print('\t{}: {}'.format(i, directory))
         answer = input(
-            'Which do you want to use? 1-{}, return to exit:'.format(i)
+            'Which do you want to use? 1-{}, return to exit: '.format(i)
         )
         if answer == '':
             return
@@ -220,7 +220,7 @@ def Packmol(prompt=True):
             i += 1
             print('\t{}: {}'.format(i, directory))
         answer = input(
-            'Which do you want to use? 1-{}, return to exit:'.format(i)
+            'Which do you want to use? 1-{}, return to exit: '.format(i)
         )
         if answer == '':
             return
@@ -324,10 +324,48 @@ def MOPAC(prompt=True):
     print('Wrote {}\n'.format(filename))
 
 
-print(__name__)
+def SEAMM(prompt=True):
+    """Set up the configuration file for SEAMM -- it is all commented
+    but that gives the user a template.
+    """
+
+    filename = '~/.seamm/seamm.ini'
+
+    directory = os.path.dirname(os.path.expanduser(filename))
+    if not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
+
+    if os.path.exists(os.path.expanduser(filename)):
+        answer = input(
+            'The configuration file {} exists. Shall I overwrite it? y/[n]: '
+            .format(filename)
+        )
+        if answer == '' or answer[0].lower() != 'y':
+            return
+
+    with open(os.path.expanduser(filename), 'w') as fd:
+        fd.write(
+            (
+                '# Configuration options for SEAMM.\n'
+                '#\n'
+                '# Options in this file override those in all other\n'
+                '# configuration files, but may in turn be overridden\n'
+                '# by environment variables or commandline options.\n'
+                '\n'
+                '# datastore = ~/SEAMM\n'
+                '# project = MyProject\n'
+            )
+        )
+    print('Wrote {}\n'.format(filename))
+    print(
+        '  You should look at it and uncomment and\n'
+        '  set it up to meet your needs.'
+    )
+
+
 if __name__ == "__main__":
-    print('calling packmol')
     Packmol()
     OpenBabel()
     LAMMPS()
     MOPAC()
+    SEAMM()
