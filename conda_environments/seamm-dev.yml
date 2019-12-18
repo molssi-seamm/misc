@@ -51,6 +51,7 @@ dependencies:
       - loop_step
       - mopac_step
       - packmol_step
+      - read_structure_step
       - table_step
 
         # Needed for development
