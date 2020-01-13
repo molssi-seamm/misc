@@ -43,6 +43,7 @@ dependencies:
       - seamm_util
       - seamm_widgets
       - seamm_ff_util
+      - reference-handler
       - cassandra_step
       - custom_step
       - forcefield_step
