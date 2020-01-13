@@ -111,7 +111,7 @@
                         "units": "nm^3"
                     },
                     "density": {
-                        "value": "1.0",
+                        "value": "1.1",
                         "units": "g/ml"
                     }
                 },
@@ -146,7 +146,7 @@
                 "h": 50,
                 "bibliography": {}
             },
-            "lammps_flowchart": {
+            "subflowchart": {
                 "item": "object",
                 "module": "seamm.flowchart",
                 "class": "Flowchart",
@@ -176,37 +176,6 @@
                     },
                     {
                         "item": "object",
-                        "module": "lammps_step.initialization",
-                        "class": "Initialization",
-                        "extension": "Initialization",
-                        "attributes": {
-                            "_uuid": 298908932158372908872880007685035867164,
-                            "module": null,
-                            "_title": "Initialization",
-                            "_description": "Initialization of a LAMMPS calculation",
-                            "_id": null,
-                            "extension": "Initialization",
-                            "_visited": true,
-                            "_references": null,
-                            "parameters": null,
-                            "x": 150.0,
-                            "y": 105.0,
-                            "w": 200,
-                            "h": 50,
-                            "bibliography": {},
-                            "cutoff": "10.0",
-                            "kspace_method": "automatic",
-                            "kspace_accuracy": "1e-5",
-                            "kspace_smallq": "1e-5",
-                            "charged_atom_fraction_cutoff": 0.1,
-                            "ewald_atom_cutoff": 1000,
-                            "msm_atom_cutoff": 5000,
-                            "use_tail_correction": 1,
-                            "shift_nonbond": 0
-                        }
-                    },
-                    {
-                        "item": "object",
                         "module": "lammps_step.velocities",
                         "class": "Velocities",
                         "extension": "Velocities",
@@ -217,7 +186,7 @@
                             "_description": "Set the initial velocities on the atoms",
                             "_id": null,
                             "extension": "Velocities",
-                            "_visited": true,
+                            "_visited": false,
                             "_references": null,
                             "parameters": {
                                 "__class__": "VelocitiesParameters",
@@ -258,7 +227,7 @@
                             "_description": "NVT dynamics step in LAMMPS",
                             "_id": null,
                             "extension": "NVT",
-                            "_visited": true,
+                            "_visited": false,
                             "_references": null,
                             "parameters": {
                                 "__class__": "NVT_Parameters",
@@ -539,45 +508,70 @@
                             "h": 50,
                             "bibliography": {}
                         }
+                    },
+                    {
+                        "item": "object",
+                        "module": "lammps_step.initialization",
+                        "class": "Initialization",
+                        "extension": "Initialization",
+                        "attributes": {
+                            "_uuid": 194731478910618326413179854494385604248,
+                            "module": null,
+                            "_title": "Initialization",
+                            "_description": [],
+                            "_id": null,
+                            "extension": "Initialization",
+                            "_visited": false,
+                            "_references": null,
+                            "parameters": {
+                                "__class__": "InitializationParameters",
+                                "__module__": "lammps_step.initialization_parameters",
+                                "cutoff": {
+                                    "value": 10.0,
+                                    "units": "\u00c5"
+                                },
+                                "kspace_method": {
+                                    "value": "automatic",
+                                    "units": null
+                                },
+                                "kspace_accuracy": {
+                                    "value": 1e-05,
+                                    "units": null
+                                },
+                                "kspace_smallq": {
+                                    "value": 1e-05,
+                                    "units": null
+                                },
+                                "charged_atom_fraction_cutoff": {
+                                    "value": 0.1,
+                                    "units": null
+                                },
+                                "ewald_atom_cutoff": {
+                                    "value": 1000,
+                                    "units": null
+                                },
+                                "msm_atom_cutoff": {
+                                    "value": 5000,
+                                    "units": null
+                                },
+                                "tail_correction": {
+                                    "value": "yes",
+                                    "units": null
+                                },
+                                "shift_nonbond": {
+                                    "value": "no",
+                                    "units": null
+                                }
+                            },
+                            "x": 150.0,
+                            "y": 105.0,
+                            "w": 200,
+                            "h": 50,
+                            "bibliography": {}
+                        }
                     }
                 ],
                 "edges": [
-                    {
-                        "item": "edge",
-                        "node1": 1,
-                        "node2": 298908932158372908872880007685035867164,
-                        "edge_type": "execution",
-                        "edge_subtype": "next",
-                        "attributes": {
-                            "arrow_id": 14,
-                            "anchor1": "s",
-                            "anchor2": "n",
-                            "coords": [
-                                150,
-                                60,
-                                150,
-                                80
-                            ]
-                        }
-                    },
-                    {
-                        "item": "edge",
-                        "node1": 298908932158372908872880007685035867164,
-                        "node2": 57733617959418524942297761918989125437,
-                        "edge_type": "execution",
-                        "edge_subtype": "next",
-                        "attributes": {
-                            "arrow_id": 15,
-                            "anchor1": "s",
-                            "anchor2": "n",
-                            "coords": [
-                                150,
-                                130,
-                                150,
-                                150
-                            ]
-                        }
-                    },
                     {
                         "item": "edge",
                         "node1": 57733617959418524942297761918989125437,
@@ -585,7 +579,7 @@
                         "edge_type": "execution",
                         "edge_subtype": "next",
                         "attributes": {
-                            "arrow_id": 16,
+                            "arrow_id": 225,
                             "anchor1": "s",
                             "anchor2": "n",
                             "coords": [
@@ -603,7 +597,7 @@
                         "edge_type": "execution",
                         "edge_subtype": "next",
                         "attributes": {
-                            "arrow_id": 17,
+                            "arrow_id": 229,
                             "anchor1": "s",
                             "anchor2": "n",
                             "coords": [
@@ -612,6 +606,42 @@
                                 150,
                                 290
                             ]
+                        }
+                    },
+                    {
+                        "item": "edge",
+                        "node1": 1,
+                        "node2": 194731478910618326413179854494385604248,
+                        "edge_type": "execution",
+                        "edge_subtype": "next",
+                        "attributes": {
+                            "anchor1": "s",
+                            "anchor2": "n",
+                            "coords": [
+                                150,
+                                60,
+                                150,
+                                80
+                            ],
+                            "arrow_id": 232
+                        }
+                    },
+                    {
+                        "item": "edge",
+                        "node1": 194731478910618326413179854494385604248,
+                        "node2": 57733617959418524942297761918989125437,
+                        "edge_type": "execution",
+                        "edge_subtype": "next",
+                        "attributes": {
+                            "anchor1": "s",
+                            "anchor2": "n",
+                            "coords": [
+                                150,
+                                130,
+                                150,
+                                150
+                            ],
+                            "arrow_id": 315
                         }
                     }
                 ]
@@ -659,7 +689,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
-                "arrow_id": 344,
+                "arrow_id": 535,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -677,6 +707,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
+                "arrow_id": 369,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -684,8 +715,7 @@
                     60,
                     150,
                     80
-                ],
-                "arrow_id": 435
+                ]
             }
         },
         {
@@ -695,6 +725,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
+                "arrow_id": 370,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -702,8 +733,7 @@
                     130,
                     150,
                     150
-                ],
-                "arrow_id": 436
+                ]
             }
         },
         {
@@ -713,6 +743,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
+                "arrow_id": 536,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -720,8 +751,7 @@
                     270,
                     150,
                     290
-                ],
-                "arrow_id": 398
+                ]
             }
         }
     ]
