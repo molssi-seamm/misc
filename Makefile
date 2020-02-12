@@ -29,6 +29,7 @@ export PRINT_HELP_PYSCRIPT
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
 COREDIRS := \
+	molsystem \
 	seamm_util \
 	seamm \
 	seamm_widgets \
@@ -48,28 +49,27 @@ PLUGINDIRS := \
 	read_structure_step \
 	table_step
 
-#	print_step \
-
 SUBDIRS = $(COREDIRS) $(PLUGINDIRS)
 
 
-help: ## Diaplay this help text
+help: ## Display this help text
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 # all: environments core plugins ## Make the conda environments, and get the git repositories
 
-install: core plugins
+install: core plugins ## Install all modules
 
 uninstall: uninstall-core uninstall-plugins ## Remove the core and plugins repositories
 
-core: $(COREDIRS) ## Fetch the core repositories from GitHub
+core: $(COREDIRS) ## Install the core modules
+	$(MAKE) -C molsystem install
 	$(MAKE) -C seamm_util install
 	$(MAKE) -C seamm install
 	$(MAKE) -C seamm_widgets install
 	$(MAKE) -C seamm_ff_util install
 	$(MAKE) -C reference_handler install
 
-plugins: $(PLUGINDIRS)  ## Fetch the MolSSI plugins for GitHub
+plugins: $(PLUGINDIRS)  ## Install the plug-ins
 	$(MAKE) -C custom_step install
 	$(MAKE) -C forcefield_step install
 	$(MAKE) -C from_smiles_step install
@@ -81,6 +81,7 @@ plugins: $(PLUGINDIRS)  ## Fetch the MolSSI plugins for GitHub
 	$(MAKE) -C table_step install
 
 uninstall-core: $(COREDIRS) ## Uninstall the core parts of SEAMM from the environment
+	$(MAKE) -C molsystem uninstall
 	$(MAKE) -C seamm_util uninstall
 	$(MAKE) -C seamm uninstall
 	$(MAKE) -C seamm_widgets uninstall
@@ -97,45 +98,46 @@ uninstall-plugins: $(PLUGINDIRS) ## Uninstall the plugins from the environment
 	$(MAKE) -C read_structure_step uninstall
 	$(MAKE) -C table_step uninstall
 
-status:
+status: ## Get the status for the modules
 	@for dir in $(SUBDIRS); \
         do \
 		(echo '\n'$$dir && cd $$dir && git status -s -b); \
         done
 
-pull:
+pull: ## Pull (update) the local repositories
 	@for dir in $(SUBDIRS); \
         do \
 		(echo '\n'$$dir && cd $$dir && git pull); \
         done
 
-checkout:
+checkout: ## Checkout the master branch of all the repositories
 	@for dir in $(SUBDIRS); \
         do \
 		(echo '\n'$$dir && cd $$dir && git checkout master); \
         done
 
-bugfix:
+bugfix:  ## Create a bugfix branch for all the repositories
 	@for dir in $(SUBDIRS); \
         do \
 		(echo '\n'$$dir && cd $$dir && git checkout -B bugfix && git branch --set-upstream-to=origin/bugfix); \
         done
 
-push:
+push:  ## Push all the repositories
 	@for dir in $(SUBDIRS); \
         do \
 		(echo '\n'$$dir && cd $$dir && git push); \
         done
 
-clone_core:
+clone_core:  ## Clone the core repositories
+	git clone git@github.com:molssi-seamm/molsystem.git
 	git clone git@github.com:molssi-seamm/seamm_util.git
 	git clone git@github.com:molssi-seamm/seamm.git
 	git clone git@github.com:molssi-seamm/seamm_widgets.git
 	git clone git@github.com:molssi-seamm/seamm_ff_util.git
-	git clone git@github.com:molssi/reference_handler.git
+	git clone git@github.com:MolSSI/reference_handler.git
 	git clone git@github.com:molssi-seamm/misc
 
-clone_plugins:
+clone_plugins:  ## Clone the plugin repositories
 	git clone git@github.com:molssi-seamm/cassandra_step.git
 	git clone git@github.com:molssi-seamm/custom_step.git
 	git clone git@github.com:molssi-seamm/forcefield_step.git
@@ -147,31 +149,35 @@ clone_plugins:
 	git clone git@github.com:molssi-seamm/read_structure_step.git
 	git clone git@github.com:molssi-seamm/table_step.git
 
-$(SUBDIRS):
+clone_website:  ## Clone the molssi-seamm.github.io site
+	git clone git@github.com:molssi-seamm/molssi-seamm.github.io.git
+
+$(SUBDIRS):  ## Clone any of the repositories
 	@echo 'cloning '$@
-	git clone git@github.com:molssi-seamm/$@.git
+	if [ $$@ = 'reference_handler'] ;\
+	then \
+		git clone git@github.com:MolSSI/$@.git ;\
+	else \
+		git clone git@github.com:molssi-seamm/$@.git ;\
+	fi
 
-reference_handler:
-	git clone git@github.com:molssi/reference_handler.git
-
-clone: clone_core clone_plugins
+clone: clone_core clone_plugins  ## Clone all the repositories
 
 # Conda environments
-conda-update:
+conda-update:  ## Update conda
 	conda update -y -n base -c defaults conda
 
-seamm_env: misc/conda_environments
+test_env: misc/  ## Create a test SEAMM Conda environment
+	conda env create --force --name test --file misc/conda_environments/seamm.yml
+
+seamm_env: misc/  ## Create the SEAMM Conda environment
 	conda env create --force --file misc/conda_environments/seamm.yml
 
-seamm-dev_env: misc/conda_environments
+seamm-dev_env: misc/  ## Create the SEAMM development Conda environment
 	conda env create --force --file misc/conda_environments/seamm-dev.yml
 
-seamm-compute_env: misc/conda_environments
+seamm-compute_env: misc/  ## Create the SEAMM Conda environment with the executables
 	conda env create --force --file misc/conda_environments/seamm-compute.yml
-	conda active seamm-compute ; misc/scripts/find_executables.py
+	conda activate seamm-compute ; misc/scripts/find_executables.py
 
-environments: seamm_env seamm-dev_env seamm-compute_env
-
-misc/conda_environments:
-	git clone git@github.com:molssi-seamm/misc
-
+environments: seamm_env seamm-dev_env seamm-compute_env  ## Create all the Conda environments
