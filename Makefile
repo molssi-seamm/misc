@@ -154,7 +154,7 @@ clone_website:  ## Clone the molssi-seamm.github.io site
 
 $(SUBDIRS):  ## Clone any of the repositories
 	@echo 'cloning '$@
-	if [ $$@ = 'reference_handler'] ;\
+	if [ $@ = 'reference_handler' ] ;\
 	then \
 		git clone git@github.com:MolSSI/$@.git ;\
 	else \
