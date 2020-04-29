@@ -1,7 +1,7 @@
 .PHONY: $(TOPTARGETS)
 .PHONY: help all uninstall clean
 .PHONY: clone_core clone_plugins clone_misc clone
-.PHONY: seamm_env seam-dev_env seamm-compute_env
+.PHONY: seamm_env seam-dev_env seamm-compute_env dashboard_env
 
 .DEFAULT_GOAL := help
 
@@ -49,7 +49,9 @@ PLUGINDIRS := \
 	read_structure_step \
 	table_step
 
-SUBDIRS = $(COREDIRS) $(PLUGINDIRS)
+DASHBOARD = seamm_dashboard
+
+SUBDIRS = $(COREDIRS) $(PLUGINDIRS) $(DASHBOARD)
 
 
 help: ## Display this help text
@@ -180,4 +182,7 @@ seamm-compute_env: misc/  ## Create the SEAMM Conda environment with the executa
 	conda env create --force --file misc/conda_environments/seamm-compute.yml
 	conda activate seamm-compute ; misc/scripts/find_executables.py
 
-environments: seamm_env seamm-dev_env seamm-compute_env  ## Create all the Conda environments
+dashboard_env: seamm_dashboard/  ## Create the environment for running the dashboard
+	@$(MAKE) -C seamm_dashboard environment
+
+environments: seamm_env seamm-dev_env seamm-compute_env  dashboard_env ## Create all the Conda environments
