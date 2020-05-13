@@ -47,6 +47,7 @@ PLUGINDIRS := \
 	mopac_step \
 	packmol_step \
 	read_structure_step \
+	solvate_step \
 	table_step
 
 DASHBOARD = seamm_dashboard
@@ -80,6 +81,7 @@ plugins: $(PLUGINDIRS)  ## Install the plug-ins
 	$(MAKE) -C mopac_step install
 	$(MAKE) -C packmol_step install
 	$(MAKE) -C read_structure_step install
+	$(MAKE) -C solvate_step install
 	$(MAKE) -C table_step install
 
 uninstall-core: $(COREDIRS) ## Uninstall the core parts of SEAMM from the environment
@@ -98,6 +100,7 @@ uninstall-plugins: $(PLUGINDIRS) ## Uninstall the plugins from the environment
 	$(MAKE) -C mopac_step uninstall
 	$(MAKE) -C packmol_step uninstall
 	$(MAKE) -C read_structure_step uninstall
+	$(MAKE) -C solvate_step uninstall
 	$(MAKE) -C table_step uninstall
 
 status: ## Get the status for the modules
@@ -149,6 +152,7 @@ clone_plugins:  ## Clone the plugin repositories
 	git clone git@github.com:molssi-seamm/mopac_step.git
 	git clone git@github.com:molssi-seamm/packmol_step.git
 	git clone git@github.com:molssi-seamm/read_structure_step.git
+	git clone git@github.com:molssi-seamm/solvate_step.git
 	git clone git@github.com:molssi-seamm/table_step.git
 
 clone_website:  ## Clone the molssi-seamm.github.io site
