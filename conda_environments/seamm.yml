@@ -32,6 +32,7 @@ dependencies:
   # Pip-only installs
   - pip:
       - seamm
+      - seamm_jobserver
       - seamm_util
       - seamm_widgets
       - seamm_ff_util

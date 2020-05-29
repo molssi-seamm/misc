@@ -34,6 +34,7 @@ COREDIRS := \
 	seamm \
 	seamm_widgets \
 	seamm_ff_util \
+	seamm_jobserver \
 	reference_handler \
 	misc
 
@@ -69,6 +70,7 @@ core: $(COREDIRS) ## Install the core modules
 	$(MAKE) -C seamm install
 	$(MAKE) -C seamm_widgets install
 	$(MAKE) -C seamm_ff_util install
+	$(MAKE) -C seamm_jobserver install
 	$(MAKE) -C reference_handler install
 
 plugins: $(PLUGINDIRS)  ## Install the plug-ins
@@ -88,6 +90,8 @@ uninstall-core: $(COREDIRS) ## Uninstall the core parts of SEAMM from the enviro
 	$(MAKE) -C seamm uninstall
 	$(MAKE) -C seamm_widgets uninstall
 	$(MAKE) -C seamm_ff_util uninstall
+	$(MAKE) -C seamm_jobserver uninstall
+	$(MAKE) -C reference_handler uninstall
 
 uninstall-plugins: $(PLUGINDIRS) ## Uninstall the plugins from the environment
 	$(MAKE) -C custom_step uninstall
@@ -136,6 +140,7 @@ clone_core:  ## Clone the core repositories
 	git clone git@github.com:molssi-seamm/seamm.git
 	git clone git@github.com:molssi-seamm/seamm_widgets.git
 	git clone git@github.com:molssi-seamm/seamm_ff_util.git
+	git clone git@github.com:molssi-seamm/seamm_jobserver.git
 	git clone git@github.com:MolSSI/reference_handler.git
 	git clone git@github.com:molssi-seamm/misc
 
