@@ -26,6 +26,7 @@ dependencies:
   - pillow
   - py-cpuinfo
   - pyparsing
+  - requests
   - sqlalchemy
   - statsmodels
 
