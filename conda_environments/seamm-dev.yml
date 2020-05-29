@@ -55,12 +55,14 @@ dependencies:
       - mopac_step
       - packmol_step
       - read_structure_step
+      - solvate_step
       - table_step
 
         # Needed for development
       - commonmark
       - cookiecutter
       - pytest-datafiles
+      - recommonmark
       - sphinx-rtd-theme
       - tox
       - yapf

@@ -46,4 +46,5 @@ dependencies:
       - mopac_step
       - packmol_step
       - read_structure_step
+      - solvate_step
       - table_step
