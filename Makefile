@@ -110,7 +110,7 @@ uninstall-plugins: $(PLUGINDIRS) ## Uninstall the plugins from the environment
 status: ## Get the status for the modules
 	@for dir in $(SUBDIRS); \
         do \
-		(echo '\n'$$dir && cd $$dir && git status -s -b); \
+		([ -d $$dir ] && echo '\n'$$dir && cd $$dir && git status -s -b); \
         done
 
 pull: ## Pull (update) the local repositories
