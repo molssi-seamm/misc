@@ -110,31 +110,46 @@ uninstall-plugins: $(PLUGINDIRS) ## Uninstall the plugins from the environment
 status: ## Get the status for the modules
 	@for dir in $(SUBDIRS); \
         do \
-		([ -d $$dir ] && echo '\n'$$dir && cd $$dir && git status -s -b); \
+	   if [ -d $$dir ] ;\
+	   then \
+		(echo '\n'$$dir && cd $$dir && git status -s -b); \
+	   fi; \
         done
 
 pull: ## Pull (update) the local repositories
 	@for dir in $(SUBDIRS); \
         do \
+	   if [ -d $$dir ] ;\
+	   then \
 		(echo '\n'$$dir && cd $$dir && git pull); \
+	   fi; \
         done
 
 checkout: ## Checkout the master branch of all the repositories
 	@for dir in $(SUBDIRS); \
         do \
+	   if [ -d $$dir ] ;\
+	   then \
 		(echo '\n'$$dir && cd $$dir && git checkout master); \
+	   fi; \
         done
 
 bugfix:  ## Create a bugfix branch for all the repositories
 	@for dir in $(SUBDIRS); \
         do \
+	   if [ -d $$dir ] ;\
+	   then \
 		(echo '\n'$$dir && cd $$dir && git checkout -B bugfix && git branch --set-upstream-to=origin/bugfix); \
+	   fi; \
         done
 
 push:  ## Push all the repositories
 	@for dir in $(SUBDIRS); \
         do \
+	   if [ -d $$dir ] ;\
+	   then \
 		(echo '\n'$$dir && cd $$dir && git push); \
+	   fi; \
         done
 
 clone_core:  ## Clone the core repositories
