@@ -49,11 +49,14 @@ PLUGINDIRS := \
 	packmol_step \
 	read_structure_step \
 	solvate_step \
+	supercell_step \
 	table_step
 
 DASHBOARD = seamm_dashboard
 
-SUBDIRS = $(COREDIRS) $(PLUGINDIRS) $(DASHBOARD)
+WEBSITE = molssi-seamm.github.io
+
+SUBDIRS = $(COREDIRS) $(PLUGINDIRS) $(DASHBOARD) $(WEBSITE)
 
 
 help: ## Display this help text
@@ -152,42 +155,23 @@ push:  ## Push all the repositories
 	   fi; \
         done
 
-clone_core:  ## Clone the core repositories
-	git clone git@github.com:molssi-seamm/molsystem.git
-	git clone git@github.com:molssi-seamm/seamm_util.git
-	git clone git@github.com:molssi-seamm/seamm.git
-	git clone git@github.com:molssi-seamm/seamm_widgets.git
-	git clone git@github.com:molssi-seamm/seamm_ff_util.git
-	git clone git@github.com:molssi-seamm/seamm_jobserver.git
-	git clone git@github.com:MolSSI/reference_handler.git
-	git clone git@github.com:molssi-seamm/misc
+clone_core: $(COREDIRS)  ## Clone the core repositories
 
-clone_plugins:  ## Clone the plugin repositories
-	git clone git@github.com:molssi-seamm/cassandra_step.git
-	git clone git@github.com:molssi-seamm/custom_step.git
-	git clone git@github.com:molssi-seamm/forcefield_step.git
-	git clone git@github.com:molssi-seamm/from_smiles_step.git
-	git clone git@github.com:molssi-seamm/lammps_step.git
-	git clone git@github.com:molssi-seamm/loop_step.git
-	git clone git@github.com:molssi-seamm/mopac_step.git
-	git clone git@github.com:molssi-seamm/packmol_step.git
-	git clone git@github.com:molssi-seamm/read_structure_step.git
-	git clone git@github.com:molssi-seamm/solvate_step.git
-	git clone git@github.com:molssi-seamm/table_step.git
+clone_plugins: $(PLUGINDIRS)  ## Clone the plugin repositories
 
-clone_website:  ## Clone the molssi-seamm.github.io site
-	git clone git@github.com:molssi-seamm/molssi-seamm.github.io.git
+clone_website: $(WEBSITE)  ## Clone the molssi-seamm.github.io site
 
 $(SUBDIRS):  ## Clone any of the repositories
 	@echo 'cloning '$@
-	if [ $@ = 'reference_handler' ] ;\
+	@if [ $@ = 'reference_handler' ] ;\
 	then \
 		git clone git@github.com:MolSSI/$@.git ;\
 	else \
 		git clone git@github.com:molssi-seamm/$@.git ;\
 	fi
 
-clone: clone_core clone_plugins  ## Clone all the repositories
+## clone: clone_core clone_plugins  ## Clone all the repositories
+clone: $(SUBDIRS)  ## Clone all the repositories
 
 # Conda environments
 conda-update:  ## Update conda
