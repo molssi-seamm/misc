@@ -1,3 +1,4 @@
+SHELL = /bin/bash
 .PHONY: $(TOPTARGETS)
 .PHONY: help all uninstall clean
 .PHONY: clone_core clone_plugins clone_misc clone
@@ -188,9 +189,32 @@ seamm-dev_env: misc/  ## Create the SEAMM development Conda environment
 
 seamm-compute_env: misc/  ## Create the SEAMM Conda environment with the executables
 	conda env create --force --file misc/conda_environments/seamm-compute.yml
-	conda activate seamm-compute ; misc/scripts/find_executables.py
+	@echo ""
+	@echo ""
+	@echo "Please activate the seamm-compute environment"
+	@echo "    conda activate seamm-compute"
+	@echo "and then run the script to find the executbales:"
+	@echo "    ./misc/scripts/find_executables.py"
 
 dashboard_env: seamm_dashboard/  ## Create the environment for running the dashboard
 	@$(MAKE) -C seamm_dashboard environment
 
+finish_dashboard: seamm_dashboard/  ## Finish creating the environment for running the dashboard
+	@$(MAKE) -C seamm_dashboard finish_dashboard
+
 environments: seamm_env seamm-dev_env seamm-compute_env  dashboard_env ## Create all the Conda environments
+
+try: ## create the environment for running the dashboard
+	@echo 'Installing the Javascript, which will also take a couple minutes!'
+	@echo ''
+	cd seamm_dashboard/app/static ;\
+	$$CONDA_PREFIX_1/envs/seamm-dashboard/bin/npm install
+	@echo ''
+
+
+out.tar:
+   set -e ;\
+   TMP=$$(mktemp -d) ;\
+   echo hi $$TMP/hi.txt ;\
+   tar -C $$TMP cf $@ . ;\
+   rm -rf $$TMP ;\
