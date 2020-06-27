@@ -37,8 +37,8 @@ dependencies:
       - seamm_util
       - seamm_widgets
       - seamm_ff_util
+      - molsystem
       - reference-handler
-      - cassandra_step
       - custom_step
       - forcefield_step
       - from_smiles_step
@@ -48,4 +48,5 @@ dependencies:
       - packmol_step
       - read_structure_step
       - solvate_step
+      - supercell_step
       - table_step
