@@ -1,5 +1,6 @@
 name: seamm-compute
 channels:
+  - psi4
   - conda-forge
   - default
 dependencies:
@@ -9,3 +10,4 @@ dependencies:
   - lammps
   - packmol
   - openbabel
+  - psi4

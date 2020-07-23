@@ -11,9 +11,7 @@ def OpenBabel(prompt=True):
     """
 
     exes = [
-        'babel',
         'obabel',
-        'obchiral',
         'obconformer',
         'obdistgen',
         'obenergy',
@@ -32,6 +30,8 @@ def OpenBabel(prompt=True):
         'obthermo',
         'roundtrip',
     ]
+    # 'babel',
+    # 'obchiral'
 
     # Find the paths to the executables, noting ones that are missing
     paths = {}
@@ -292,8 +292,7 @@ def MOPAC(prompt=True):
         print()
         if answer != '' and answer[0].lower() != 'y':
             return
-
-    paths['MOPAC2016'] = 'MOPAC2016.exe'
+        paths['MOPAC2016'] = 'MOPAC2016.exe'
 
     filename = '~/.seamm/mopac.ini'
 
@@ -320,6 +319,81 @@ def MOPAC(prompt=True):
                 'mopac-num-threads = default\n'
                 'mopac-mkl-num-threads = default\n'
             ).format(**paths)
+        )
+    print('Wrote {}\n'.format(filename))
+
+
+def Psi4(prompt=True):
+    """Find the path to the Psi4 executable and set up the
+    configuration file psi4.ini in the appropriate location.
+    """
+
+    exes = [
+        'psi4'
+    ]
+
+    # Find the paths to the executables, noting ones that are missing
+    paths = {}
+    missing = []
+    for exe in exes:
+        path = shutil.which(exe)
+        if not path:
+            path = shutil.which(exe + '.exe')
+        if path:
+            path = os.path.abspath(path)
+        paths[exe] = path
+        if path is None:
+            missing.append(exe)
+
+    if len(missing) > 0:
+        print("The following executables were not found:\n\t")
+        print('\n\t'.join(missing))
+        answer = input('Do you want to continue? [y]/n: ')
+        print()
+        if answer != '' and answer[0].lower() != 'y':
+            return
+
+        paths['psi4'] = 'psi4'
+
+    filename = '~/.seamm/psi4.ini'
+
+    directory = os.path.dirname(os.path.expanduser(filename))
+    if not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
+
+    if os.path.exists(os.path.expanduser(filename)):
+        answer = input(
+            'The configuration file {} exists. Shall I overwrite it? [y]/n: '
+            .format(filename)
+        )
+        if answer != '' and answer[0].lower() != 'y':
+            return
+
+    with open(os.path.expanduser(filename), 'w') as fd:
+        fd.write(
+            f"""# Psi4 executable options.
+# These may be overriden by the plug=in using Psi4, i.e.
+# psi4_step.ini or the general seamm.ini file.
+
+# Full path to the psi4 executable
+psi4-exe = {paths['psi4']}
+
+# Maximum number of threads
+# psi4-max-threads = 1
+
+# Number of threads to use
+# psi4-num-threads = 1
+
+# Total amount of memory to use
+# Use kB, MB, GB (1k = 1000) or kiB, MiB, GiB (1k = 1024)
+# The default is to use the same proportion of memory as
+# cores being used.
+psi4-memory = default
+
+# Maximum amount of memory to use
+# Use kB, MB, GB (1k = 1000) or kiB, MiB, GiB (1k = 1024)
+# psi4-max-memory = 1 GB
+"""
         )
     print('Wrote {}\n'.format(filename))
 
@@ -368,4 +442,5 @@ if __name__ == "__main__":
     OpenBabel()
     LAMMPS()
     MOPAC()
+    Psi4()
     SEAMM()

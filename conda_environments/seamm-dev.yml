@@ -19,11 +19,12 @@ dependencies:
   - jinja2
   - kiwisolver
   - matplotlib
-  - packaging
-  - pbr
   - numpy
+  - packaging
   - pandas
+  - pbr
   - pillow
+  - psutil
   - py-cpuinfo
   - pyparsing
   - requests
@@ -55,6 +56,7 @@ dependencies:
       - loop_step
       - mopac_step
       - packmol_step
+      - psi4_step
       - read_structure_step
       - solvate_step
       - supercell_step
