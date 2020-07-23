@@ -11,3 +11,4 @@ dependencies:
   - packmol
   - openbabel
   - psi4
+  - psi4-rt
