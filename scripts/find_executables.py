@@ -388,11 +388,16 @@ psi4-exe = {paths['psi4']}
 # Use kB, MB, GB (1k = 1000) or kiB, MiB, GiB (1k = 1024)
 # The default is to use the same proportion of memory as
 # cores being used.
-psi4-memory = default
+# psi4-memory = 1 GiB
 
 # Maximum amount of memory to use
 # Use kB, MB, GB (1k = 1000) or kiB, MiB, GiB (1k = 1024)
-# psi4-max-memory = 1 GB
+# psi4-max-memory = 2 GB
+
+# Fraction of memory to use, typically about 90% (the default)
+# This accounts for the fact the Psi4 doesn't monitor all the memory
+# that it uses.
+# psi4-memory-factor = 90%
 """
         )
     print('Wrote {}\n'.format(filename))
@@ -426,8 +431,21 @@ def SEAMM(prompt=True):
                 '# configuration files, but may in turn be overridden\n'
                 '# by environment variables or commandline options.\n'
                 '\n'
+                '# The location of the datastore\n'
                 '# datastore = ~/SEAMM\n'
+                '\n'
+                '# The default project\n'
                 '# project = MyProject\n'
+                '\n'
+                '# The maximum number of cores to use in any step:\n'
+                '# max-cores = 1\n'
+                '\n'
+                '# The maximum amount of memory to use in any step\n'
+                '# Use kB, MB, GB (1k = 1000) or kiB, MiB, GiB (1k = 1024)\n'
+                '# Note that node all codes honor this!\n'
+                "# 'available' requests using all the available memory\n"
+                "# while 'all' requests using all the physical memory.\n"
+                '# max-memory = 2 GiB\n'
             )
         )
     print('Wrote {}\n'.format(filename))

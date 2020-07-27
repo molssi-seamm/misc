@@ -1,12 +1,10 @@
-name: seamm-compute
+name: seamm-lammps
 channels:
-  - psi4
   - conda-forge
   - default
 dependencies:
   - python>=3.7
     # Executables, etc.
-  - packmol
-  - openbabel
-  - psi4
-  - psi4-rt
+  - openmpi
+  - lammps
+  - openkim-models
