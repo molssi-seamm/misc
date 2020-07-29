@@ -213,11 +213,3 @@ try: ## create the environment for running the dashboard
 	cd seamm_dashboard/app/static ;\
 	$$CONDA_PREFIX_1/envs/seamm-dashboard/bin/npm install
 	@echo ''
-
-
-out.tar:
-   set -e ;\
-   TMP=$$(mktemp -d) ;\
-   echo hi $$TMP/hi.txt ;\
-   tar -C $$TMP cf $@ . ;\
-   rm -rf $$TMP ;\
