@@ -48,6 +48,7 @@ PLUGINDIRS := \
 	loop_step \
 	mopac_step \
 	packmol_step \
+	psi4_step \
 	read_structure_step \
 	solvate_step \
 	supercell_step \
@@ -86,6 +87,7 @@ plugins: $(PLUGINDIRS)  ## Install the plug-ins
 	$(MAKE) -C loop_step install
 	$(MAKE) -C mopac_step install
 	$(MAKE) -C packmol_step install
+	$(MAKE) -C psi4_step install
 	$(MAKE) -C read_structure_step install
 	$(MAKE) -C solvate_step install
 	$(MAKE) -C table_step install
@@ -107,6 +109,7 @@ uninstall-plugins: $(PLUGINDIRS) ## Uninstall the plugins from the environment
 	$(MAKE) -C loop_step uninstall
 	$(MAKE) -C mopac_step uninstall
 	$(MAKE) -C packmol_step uninstall
+	$(MAKE) -C psi4_step uninstall
 	$(MAKE) -C read_structure_step uninstall
 	$(MAKE) -C solvate_step uninstall
 	$(MAKE) -C table_step uninstall
