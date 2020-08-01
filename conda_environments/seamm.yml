@@ -2,12 +2,15 @@ name: seamm
 channels:
   - rdkit
   - default
+  - conda-forge
 dependencies:
     # Base depends
   - python>=3.7
   - tk=8.6.7
   - pip
   - rdkit
+  - openkim-models
+  - kim-query
 
     # other dependencies that are in conda
   - attrs
