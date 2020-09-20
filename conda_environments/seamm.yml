@@ -22,6 +22,7 @@ dependencies:
   - jinja2
   - kiwisolver
   - matplotlib
+  - openbabel
   - numpy
   - packaging
   - pandas

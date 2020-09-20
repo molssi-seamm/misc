@@ -23,6 +23,7 @@ dependencies:
   - kiwisolver
   - matplotlib
   - numpy
+  - openbabel
   - packaging
   - pandas
   - pbr
