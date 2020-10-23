@@ -20,6 +20,8 @@
                 "extension": null,
                 "_visited": true,
                 "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
                 "parameters": null,
                 "x": 150,
                 "y": 35,
@@ -40,8 +42,10 @@
                 "_description": "",
                 "_id": null,
                 "extension": "FromSMILESStep",
-                "_visited": false,
+                "_visited": true,
                 "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
                 "parameters": {
                     "__class__": "FromSMILESParameters",
                     "__module__": "from_smiles_step.from_smiles_parameters",
@@ -67,225 +71,6 @@
         },
         {
             "item": "object",
-            "module": "lammps_step.lammps",
-            "class": "LAMMPS",
-            "extension": "LAMMPS",
-            "attributes": {
-                "lammps_units": "real",
-                "_data": {},
-                "maxlags": 100,
-                "_uuid": 58317762056626804019968033201255614453,
-                "module": null,
-                "_title": "LAMMPS",
-                "_description": "",
-                "_id": null,
-                "extension": "LAMMPS",
-                "_visited": false,
-                "_references": null,
-                "parameters": null,
-                "x": 150,
-                "y": 315,
-                "w": 200,
-                "h": 50,
-                "bibliography": {}
-            },
-            "subflowchart": {
-                "item": "object",
-                "module": "seamm.flowchart",
-                "class": "Flowchart",
-                "extension": null,
-                "nodes": [
-                    {
-                        "item": "object",
-                        "module": "seamm.start_node",
-                        "class": "StartNode",
-                        "extension": null,
-                        "attributes": {
-                            "_uuid": 1,
-                            "module": null,
-                            "_title": "Start",
-                            "_description": "",
-                            "_id": null,
-                            "extension": null,
-                            "_visited": true,
-                            "_references": null,
-                            "parameters": null,
-                            "x": 150.0,
-                            "y": 35.0,
-                            "w": 200,
-                            "h": 50,
-                            "bibliography": {}
-                        }
-                    },
-                    {
-                        "item": "object",
-                        "module": "lammps_step.minimization",
-                        "class": "Minimization",
-                        "extension": "Minimization",
-                        "attributes": {
-                            "_uuid": 74424992869923803759868395750093701532,
-                            "module": null,
-                            "_title": "Minimization",
-                            "_description": "Minimization step in LAMMPS",
-                            "_id": null,
-                            "extension": "Minimization",
-                            "_visited": false,
-                            "_references": null,
-                            "parameters": {
-                                "__class__": "EnergyParameters",
-                                "__module__": "lammps_step.energy_parameters",
-                                "results": {
-                                    "value": {},
-                                    "units": null
-                                },
-                                "create tables": {
-                                    "value": "yes",
-                                    "units": null
-                                }
-                            },
-                            "x": 150.0,
-                            "y": 175.0,
-                            "w": 200,
-                            "h": 50,
-                            "bibliography": {},
-                            "convergence": "normal",
-                            "etol_method": "is",
-                            "etol": 1e-06,
-                            "etol_variable": "",
-                            "ftol_method": "is",
-                            "ftol": {
-                                "__type__": "pint_units",
-                                "data": [
-                                    0.1,
-                                    [
-                                        [
-                                            "kilocalorie",
-                                            1.0
-                                        ],
-                                        [
-                                            "mole",
-                                            -1.0
-                                        ],
-                                        [
-                                            "angstrom",
-                                            -1.0
-                                        ]
-                                    ]
-                                ]
-                            },
-                            "ftol_variable": "",
-                            "maxiters_method": "is",
-                            "maxiters": 10000,
-                            "maxiters_variable": "",
-                            "maxevals_method": "is",
-                            "maxevals": 30000,
-                            "maxevals_variable": ""
-                        }
-                    },
-                    {
-                        "item": "object",
-                        "module": "lammps_step.initialization",
-                        "class": "Initialization",
-                        "extension": "Initialization",
-                        "attributes": {
-                            "_uuid": 267524139083865526846433772133656653597,
-                            "module": null,
-                            "_title": "Initialization",
-                            "_description": [],
-                            "_id": null,
-                            "extension": "Initialization",
-                            "_visited": false,
-                            "_references": null,
-                            "parameters": {
-                                "__class__": "InitializationParameters",
-                                "__module__": "lammps_step.initialization_parameters",
-                                "cutoff": {
-                                    "value": 10.0,
-                                    "units": "\u00c5"
-                                },
-                                "kspace_method": {
-                                    "value": "automatic",
-                                    "units": null
-                                },
-                                "kspace_accuracy": {
-                                    "value": 1e-05,
-                                    "units": null
-                                },
-                                "kspace_smallq": {
-                                    "value": 1e-05,
-                                    "units": null
-                                },
-                                "charged_atom_fraction_cutoff": {
-                                    "value": 0.1,
-                                    "units": null
-                                },
-                                "ewald_atom_cutoff": {
-                                    "value": 1000,
-                                    "units": null
-                                },
-                                "msm_atom_cutoff": {
-                                    "value": 5000,
-                                    "units": null
-                                },
-                                "tail_correction": {
-                                    "value": "yes",
-                                    "units": null
-                                },
-                                "shift_nonbond": {
-                                    "value": "no",
-                                    "units": null
-                                }
-                            },
-                            "x": 150.0,
-                            "y": 105.0,
-                            "w": 200,
-                            "h": 50,
-                            "bibliography": {}
-                        }
-                    }
-                ],
-                "edges": [
-                    {
-                        "item": "edge",
-                        "node1": 1,
-                        "node2": 267524139083865526846433772133656653597,
-                        "edge_type": "execution",
-                        "edge_subtype": "next",
-                        "attributes": {
-                            "anchor1": "s",
-                            "anchor2": "n",
-                            "coords": [
-                                150,
-                                60,
-                                150,
-                                80
-                            ],
-                            "arrow_id": 67
-                        }
-                    },
-                    {
-                        "item": "edge",
-                        "node1": 267524139083865526846433772133656653597,
-                        "node2": 74424992869923803759868395750093701532,
-                        "edge_type": "execution",
-                        "edge_subtype": "next",
-                        "attributes": {
-                            "anchor1": "s",
-                            "anchor2": "n",
-                            "coords": [
-                                150,
-                                130,
-                                150,
-                                150
-                            ],
-                            "arrow_id": 166
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "item": "object",
             "module": "packmol_step.packmol",
             "class": "Packmol",
             "extension": "Packmol",
@@ -298,6 +83,8 @@
                 "extension": "Packmol",
                 "_visited": false,
                 "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
                 "parameters": {
                     "__class__": "PackmolParameters",
                     "__module__": "packmol_step.packmol_parameters",
@@ -347,7 +134,6 @@
             "class": "LAMMPS",
             "extension": "LAMMPS",
             "attributes": {
-                "lammps_units": "real",
                 "_data": {},
                 "maxlags": 100,
                 "_uuid": 137334560183226944984640062252945895200,
@@ -358,12 +144,15 @@
                 "extension": "LAMMPS",
                 "_visited": false,
                 "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
                 "parameters": null,
                 "x": 150,
                 "y": 455,
                 "w": 200,
                 "h": 50,
-                "bibliography": {}
+                "bibliography": {},
+                "lammps_units": "real"
             },
             "subflowchart": {
                 "item": "object",
@@ -385,6 +174,8 @@
                             "extension": null,
                             "_visited": true,
                             "_references": null,
+                            "_jinja_env": null,
+                            "_graphs": null,
                             "parameters": null,
                             "x": 150.0,
                             "y": 35.0,
@@ -407,6 +198,8 @@
                             "extension": "Velocities",
                             "_visited": false,
                             "_references": null,
+                            "_jinja_env": null,
+                            "_graphs": null,
                             "parameters": {
                                 "__class__": "VelocitiesParameters",
                                 "__module__": "lammps_step.velocities_parameters",
@@ -448,6 +241,8 @@
                             "extension": "NVT",
                             "_visited": false,
                             "_references": null,
+                            "_jinja_env": null,
+                            "_graphs": null,
                             "parameters": {
                                 "__class__": "NVT_Parameters",
                                 "__module__": "lammps_step.nvt_parameters",
@@ -537,6 +332,8 @@
                             "extension": "NPT",
                             "_visited": false,
                             "_references": null,
+                            "_jinja_env": null,
+                            "_graphs": null,
                             "parameters": {
                                 "__class__": "NPT_Parameters",
                                 "__module__": "lammps_step.npt_parameters",
@@ -742,6 +539,8 @@
                             "extension": "Initialization",
                             "_visited": false,
                             "_references": null,
+                            "_jinja_env": null,
+                            "_graphs": null,
                             "parameters": {
                                 "__class__": "InitializationParameters",
                                 "__module__": "lammps_step.initialization_parameters",
@@ -780,6 +579,14 @@
                                 "shift_nonbond": {
                                     "value": "no",
                                     "units": null
+                                },
+                                "rigid_waters": {
+                                    "value": "yes",
+                                    "units": null
+                                },
+                                "fix_XH_bond_lengths": {
+                                    "value": "none",
+                                    "units": null
                                 }
                             },
                             "x": 150.0,
@@ -798,7 +605,7 @@
                         "edge_type": "execution",
                         "edge_subtype": "next",
                         "attributes": {
-                            "arrow_id": 99,
+                            "arrow_id": 14,
                             "anchor1": "s",
                             "anchor2": "n",
                             "coords": [
@@ -816,7 +623,7 @@
                         "edge_type": "execution",
                         "edge_subtype": "next",
                         "attributes": {
-                            "arrow_id": 103,
+                            "arrow_id": 15,
                             "anchor1": "s",
                             "anchor2": "n",
                             "coords": [
@@ -834,6 +641,7 @@
                         "edge_type": "execution",
                         "edge_subtype": "next",
                         "attributes": {
+                            "arrow_id": 16,
                             "anchor1": "s",
                             "anchor2": "n",
                             "coords": [
@@ -841,8 +649,7 @@
                                 60,
                                 150,
                                 80
-                            ],
-                            "arrow_id": 106
+                            ]
                         }
                     },
                     {
@@ -852,6 +659,7 @@
                         "edge_type": "execution",
                         "edge_subtype": "next",
                         "attributes": {
+                            "arrow_id": 17,
                             "anchor1": "s",
                             "anchor2": "n",
                             "coords": [
@@ -859,8 +667,7 @@
                                 130,
                                 150,
                                 150
-                            ],
-                            "arrow_id": 187
+                            ]
                         }
                     }
                 ]
@@ -881,6 +688,8 @@
                 "extension": "Python",
                 "_visited": true,
                 "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
                 "parameters": null,
                 "x": 150,
                 "y": 105,
@@ -901,17 +710,31 @@
                 "_description": "",
                 "_id": null,
                 "extension": "Forcefield",
-                "_visited": false,
+                "_visited": true,
                 "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
                 "parameters": {
                     "__class__": "ForcefieldParameters",
                     "__module__": "forcefield_step.forcefield_parameters",
+                    "task": {
+                        "value": "setup forcefield",
+                        "units": null
+                    },
                     "forcefield_file": {
                         "value": "pcff2018.frc",
                         "units": null
                     },
                     "forcefield": {
                         "value": "default",
+                        "units": null
+                    },
+                    "elements": {
+                        "value": "",
+                        "units": null
+                    },
+                    "potentials": {
+                        "value": "",
                         "units": null
                     }
                 },
@@ -921,45 +744,56 @@
                 "h": 50,
                 "bibliography": {}
             }
+        },
+        {
+            "item": "object",
+            "module": "forcefield_step.forcefield",
+            "class": "Forcefield",
+            "extension": "Forcefield",
+            "attributes": {
+                "_uuid": 149956230156149190490761125516609143926,
+                "module": null,
+                "_title": "Forcefield",
+                "_description": "",
+                "_id": null,
+                "extension": "Forcefield",
+                "_visited": false,
+                "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
+                "parameters": {
+                    "__class__": "ForcefieldParameters",
+                    "__module__": "forcefield_step.forcefield_parameters",
+                    "task": {
+                        "value": "assign forcefield to structure",
+                        "units": null
+                    },
+                    "forcefield_file": {
+                        "value": "OpenKIM",
+                        "units": null
+                    },
+                    "forcefield": {
+                        "value": "default",
+                        "units": null
+                    },
+                    "elements": {
+                        "value": [],
+                        "units": null
+                    },
+                    "potentials": {
+                        "value": "",
+                        "units": null
+                    }
+                },
+                "x": 150,
+                "y": 315,
+                "w": 200,
+                "h": 50,
+                "bibliography": {}
+            }
         }
     ],
     "edges": [
-        {
-            "item": "edge",
-            "node1": 126525904988377475417053212932803968620,
-            "node2": 58317762056626804019968033201255614453,
-            "edge_type": "execution",
-            "edge_subtype": "next",
-            "attributes": {
-                "arrow_id": 736,
-                "anchor1": "s",
-                "anchor2": "n",
-                "coords": [
-                    150,
-                    270,
-                    150,
-                    290
-                ]
-            }
-        },
-        {
-            "item": "edge",
-            "node1": 58317762056626804019968033201255614453,
-            "node2": 128537608746390027161067241126498716929,
-            "edge_type": "execution",
-            "edge_subtype": "next",
-            "attributes": {
-                "arrow_id": 737,
-                "anchor1": "s",
-                "anchor2": "n",
-                "coords": [
-                    150,
-                    340,
-                    150,
-                    360
-                ]
-            }
-        },
         {
             "item": "edge",
             "node1": 128537608746390027161067241126498716929,
@@ -967,7 +801,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
-                "arrow_id": 754,
+                "arrow_id": 114,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -985,7 +819,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
-                "arrow_id": 662,
+                "arrow_id": 117,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -1003,7 +837,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
-                "arrow_id": 663,
+                "arrow_id": 121,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -1021,7 +855,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
-                "arrow_id": 664,
+                "arrow_id": 122,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -1030,6 +864,42 @@
                     150,
                     220
                 ]
+            }
+        },
+        {
+            "item": "edge",
+            "node1": 126525904988377475417053212932803968620,
+            "node2": 149956230156149190490761125516609143926,
+            "edge_type": "execution",
+            "edge_subtype": "next",
+            "attributes": {
+                "anchor1": "s",
+                "anchor2": "n",
+                "coords": [
+                    150,
+                    270,
+                    150,
+                    290
+                ],
+                "arrow_id": 236
+            }
+        },
+        {
+            "item": "edge",
+            "node1": 149956230156149190490761125516609143926,
+            "node2": 128537608746390027161067241126498716929,
+            "edge_type": "execution",
+            "edge_subtype": "next",
+            "attributes": {
+                "anchor1": "s",
+                "anchor2": "n",
+                "coords": [
+                    150,
+                    340,
+                    150,
+                    360
+                ],
+                "arrow_id": 237
             }
         }
     ]

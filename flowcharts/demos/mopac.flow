@@ -1,6 +1,5 @@
 #!/usr/bin/env run_flowchart
 !MolSSI flowchart 1.0
-
 {
     "item": "object",
     "module": "seamm.flowchart",
@@ -14,16 +13,21 @@
             "extension": null,
             "attributes": {
                 "_uuid": 1,
+                "module": null,
                 "_title": "Start",
                 "_description": "This is a very simple flowchart illustrating MOPAC. Benzene is created from a\n SMILES string, and then run with MOPAC. The structure is optimized and then a\n standard thermodynamics calculation is performed. Some of the calculated\n properties are placed into the table 'results', which is then printed.",
                 "_id": null,
                 "extension": null,
                 "_visited": true,
+                "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
                 "parameters": null,
                 "x": 150,
                 "y": 35,
                 "w": 200,
-                "h": 50
+                "h": 50,
+                "bibliography": {}
             }
         },
         {
@@ -33,11 +37,15 @@
             "extension": "FromSMILESStep",
             "attributes": {
                 "_uuid": 267887489823208109664194006199276984346,
+                "module": null,
                 "_title": "from SMILES",
                 "_description": "",
                 "_id": null,
                 "extension": "FromSMILESStep",
                 "_visited": true,
+                "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
                 "parameters": {
                     "__class__": "FromSMILESParameters",
                     "__module__": "from_smiles_step.from_smiles_parameters",
@@ -57,7 +65,8 @@
                 "x": 150,
                 "y": 105,
                 "w": 200,
-                "h": 50
+                "h": 50,
+                "bibliography": {}
             }
         },
         {
@@ -68,16 +77,74 @@
             "attributes": {
                 "_data": {},
                 "_uuid": 159233434457165198966919963893308958940,
+                "module": "mopac_step.mopac",
                 "_title": "MOPAC",
                 "_description": "",
                 "_id": null,
                 "extension": "MOPAC",
                 "_visited": true,
+                "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
                 "parameters": null,
                 "x": 150,
                 "y": 175,
                 "w": 200,
-                "h": 50
+                "h": 50,
+                "bibliography": {
+                    "Stewart_2016": "@misc{Stewart_2016,\n address = {Colorado Springs, CO, USA},\n author = {Stewart, J. J. P.},\n key = {MOPAC_2016},\n month = {aug},\n organization = {Stewart Computational Chemistry},\n title = {MOPAC2016},\n url = {http://OpenMOPAC.net},\n version = {version 19.255M},\n year = {2019}\n}\n\n",
+                    "Stewart_2012": "@article{Stewart_2012,\n author = {James J. P. Stewart},\n doi = {10.1007/s00894-012-1667-x},\n journal = {Journal of Molecular Modeling},\n month = {nov},\n number = {1},\n pages = {1--32},\n publisher = {Springer Science and Business Media {LLC}},\n title = {Optimization of parameters for semiempirical methods {VI}: more modifications to the {NDDO} approximations and re-optimization of parameters},\n url = {https://doi.org/10.1007%2Fs00894-012-1667-x},\n volume = {19},\n year = {2012}\n}\n\n",
+                    "Stewart_2007": "@article{Stewart_2007,\n author = {James J. P. Stewart},\n doi = {10.1007/s00894-007-0233-4},\n journal = {Journal of Molecular Modeling},\n month = {sep},\n number = {12},\n pages = {1173--1213},\n publisher = {Springer Science and Business Media {LLC}},\n title = {Optimization of parameters for semiempirical methods V: Modification of {NDDO} approximations and application to 70 elements},\n url = {https://doi.org/10.1007%2Fs00894-007-0233-4},\n volume = {13},\n year = {2007}\n}\n\n",
+                    "Stewart_1989": "@article{Stewart_1989,\n author = {James J. P. Stewart},\n doi = {10.1002/jcc.540100208},\n journal = {Journal of Computational Chemistry},\n month = {mar},\n number = {2},\n pages = {209--220},\n publisher = {Wiley},\n title = {Optimization of parameters for semiempirical methods I. Method},\n url = {https://doi.org/10.1002%2Fjcc.540100208},\n volume = {10},\n year = {1989}\n}\n\n",
+                    "Stewart_1991": "@article{Stewart_1991,\n author = {James J. P. Stewart},\n doi = {10.1002/jcc.540120306},\n journal = {Journal of Computational Chemistry},\n month = {apr},\n number = {3},\n pages = {320--341},\n publisher = {Wiley},\n title = {Optimization of parameters for semiempirical methods. {III} Extension of {PM}3 to Be, Mg, Zn, Ga, Ge, As, Se, Cd, In, Sn, Sb, Te, Hg, Tl, Pb, and Bi},\n url = {https://doi.org/10.1002%2Fjcc.540120306},\n volume = {12},\n year = {1991}\n}\n\n",
+                    "Anders_1993": "@article{Anders_1993,\n author = {Ernst Anders and Rainer Koch and Peter Freunscht},\n doi = {10.1002/jcc.540141106},\n journal = {Journal of Computational Chemistry},\n month = {nov},\n number = {11},\n pages = {1301--1312},\n publisher = {Wiley},\n title = {Optimization and application of lithium parameters for {PM}3},\n url = {https://doi.org/10.1002%2Fjcc.540141106},\n volume = {14},\n year = {1993}\n}\n\n",
+                    "Stewart_2004": "@article{Stewart_2004,\n author = {James J. P. Stewart},\n doi = {10.1007/s00894-004-0183-z},\n journal = {Journal of Molecular Modeling},\n month = {apr},\n number = {2},\n pages = {155--164},\n publisher = {Springer Science and Business Media {LLC}},\n title = {Optimization of parameters for semiempirical methods {IV}: extension of {MNDO}, {AM}1, and {PM}3 to more main group elements},\n url = {https://doi.org/10.1007%2Fs00894-004-0183-z},\n volume = {10},\n year = {2004}\n}\n\n",
+                    "Dewar_1977": "@article{Dewar_1977,\n author = {Michael J. S. Dewar and Walter Thiel},\n doi = {10.1021/ja00457a004},\n journal = {Journal of the American Chemical Society},\n month = {jun},\n number = {15},\n pages = {4899--4907},\n publisher = {American Chemical Society ({ACS})},\n title = {Ground states of molecules. 38. The {MNDO} method. Approximations and parameters},\n url = {https://doi.org/10.1021%2Fja00457a004},\n volume = {99},\n year = {1977}\n}\n\n",
+                    "Dewar_1978": "@article{Dewar_1978,\n author = {Michael J. S. Dewar and Henry S. Rzepa},\n doi = {10.1021/ja00471a020},\n journal = {Journal of the American Chemical Society},\n month = {feb},\n number = {3},\n pages = {777--784},\n publisher = {American Chemical Society ({ACS})},\n title = {Ground states of molecules. 45. {MNDO} results for molecules containing beryllium},\n url = {https://doi.org/10.1021%2Fja00471a020},\n volume = {100},\n year = {1978}\n}\n\n",
+                    "Davis_1981": "@article{Davis_1981,\n author = {L. P. Davis and R. M. Guidry and J. R. Williams and M. J. S. Dewar and H. S. Rzepa},\n doi = {10.1002/jcc.540020412},\n journal = {Journal of Computational Chemistry},\n number = {4},\n pages = {433--445},\n publisher = {Wiley},\n title = {{MNDO} calculations for compounds containing aluminum and boron},\n url = {https://doi.org/10.1002%2Fjcc.540020412},\n volume = {2},\n year = {1981}\n}\n\n",
+                    "Dewar_1978b": "@article{Dewar_1978b,\n author = {Michael J. S. Dewar and Henry S. Rzepa},\n doi = {10.1021/ja00469a010},\n journal = {Journal of the American Chemical Society},\n month = {jan},\n number = {1},\n pages = {58--67},\n publisher = {American Chemical Society ({ACS})},\n title = {Ground states of molecules. 40. {MNDO} results for molecules containing fluorine},\n url = {https://doi.org/10.1021%2Fja00469a010},\n volume = {100},\n year = {1978}\n}\n\n",
+                    "Dewar_1986": "@article{Dewar_1986,\n author = {Michael J. S. Dewar and Eamonn F. Healy and James J. P. Stewart and James. Friedheim and Gilbert. Grady},\n doi = {10.1021/om00133a029},\n journal = {Organometallics},\n month = {feb},\n number = {2},\n pages = {375--379},\n publisher = {American Chemical Society ({ACS})},\n title = {Revised {MNDO} parameters for silicon},\n url = {https://doi.org/10.1021%2Fom00133a029},\n volume = {5},\n year = {1986}\n}\n\n",
+                    "Dewar_1978c": "@article{Dewar_1978c,\n author = {Michael J. S. Dewar and Michael L. McKee and Henry S. Rzepa},\n doi = {10.1021/ja00479a058},\n journal = {Journal of the American Chemical Society},\n month = {may},\n number = {11},\n pages = {3607--3607},\n publisher = {American Chemical Society ({ACS})},\n title = {{MNDO} parameters for third period elements},\n url = {https://doi.org/10.1021%2Fja00479a058},\n volume = {100},\n year = {1978}\n}\n\n",
+                    "Dewar_1986b": "@article{Dewar_1986b,\n author = {Michael J. S. Dewar and Charles H. Reynolds},\n doi = {10.1002/jcc.540070206},\n journal = {Journal of Computational Chemistry},\n month = {apr},\n number = {2},\n pages = {140--143},\n publisher = {Wiley},\n title = {An improved set of mndo parameters for sulfur},\n url = {https://doi.org/10.1002%2Fjcc.540070206},\n volume = {7},\n year = {1986}\n}\n\n",
+                    "Dewar_1983": "@article{Dewar_1983,\n author = {Michael J. S. Dewar and Henry S. Rzepa},\n doi = {10.1002/jcc.540040207},\n journal = {Journal of Computational Chemistry},\n number = {2},\n pages = {158--169},\n publisher = {Wiley},\n title = {Ground states of molecules. 53.{MNDO} calculations for molecules containing chlorine},\n url = {https://doi.org/10.1002%2Fjcc.540040207},\n volume = {4},\n year = {1983}\n}\n\n",
+                    "Dewar_1986c": "@article{Dewar_1986c,\n author = {Michael J. S. Dewar and Kenneth M. Merz},\n doi = {10.1021/om00138a033},\n journal = {Organometallics},\n month = {jul},\n number = {7},\n pages = {1494--1496},\n publisher = {American Chemical Society ({ACS})},\n title = {Ground states of molecules. Part 84. {MNDO} calculations for compounds containing zinc},\n url = {https://doi.org/10.1021%2Fom00138a033},\n volume = {5},\n year = {1986}\n}\n\n",
+                    "Dewar_1987": "@article{Dewar_1987,\n author = {Michael J. S. Dewar and Gilbert L. Grady and Eamonn F. Healy},\n doi = {10.1021/om00144a034},\n journal = {Organometallics},\n month = {jan},\n number = {1},\n pages = {186--189},\n publisher = {American Chemical Society ({ACS})},\n title = {Ground states of molecules. 73. {MNDO} calculations for compounds containing germanium},\n url = {https://doi.org/10.1021%2Fom00144a034},\n volume = {6},\n year = {1987}\n}\n\n",
+                    "Dewar_1983b": "@article{Dewar_1983b,\n author = {Michael J. S. Dewar and Eamonn Healy},\n doi = {10.1002/jcc.540040412},\n journal = {Journal of Computational Chemistry},\n number = {4},\n pages = {542--551},\n publisher = {Wiley},\n title = {Ground states of molecules. 64.{MNDO} Calculations for compounds containing bromine},\n url = {https://doi.org/10.1002%2Fjcc.540040412},\n volume = {4},\n year = {1983}\n}\n\n",
+                    "Dewar_1984": "@article{Dewar_1984,\n author = {Michael J. S. Dewar and Gilbert L. Grady and James J. P. Stewart},\n doi = {10.1021/ja00334a051},\n journal = {Journal of the American Chemical Society},\n month = {oct},\n number = {22},\n pages = {6771--6773},\n publisher = {American Chemical Society ({ACS})},\n title = {{MNDO} Calculations for Compounds Containing Tin},\n url = {https://doi.org/10.1021%2Fja00334a051},\n volume = {106},\n year = {1984}\n}\n\n",
+                    "Dewar_1984b": "@article{Dewar_1984b,\n author = {Michael J. S. Dewar and Eamonn F. Healy and James J. P. Stewart},\n doi = {10.1002/jcc.540050413},\n journal = {Journal of Computational Chemistry},\n month = {aug},\n number = {4},\n pages = {358--362},\n publisher = {Wiley},\n title = {Ground states of molecules. 67.{MNDO} Calculations for compounds containing iodine},\n url = {https://doi.org/10.1002%2Fjcc.540050413},\n volume = {5},\n year = {1984}\n}\n\n",
+                    "Dewar_1985": "@article{Dewar_1985,\n author = {Michael J. S. Dewar and Gilbert L. Grady and Kenneth M. Merz and James J. P. Stewart},\n doi = {10.1021/om00130a008},\n journal = {Organometallics},\n month = {nov},\n number = {11},\n pages = {1964--1966},\n publisher = {American Chemical Society ({ACS})},\n title = {{MNDO} calculations for compounds containing mercury},\n url = {https://doi.org/10.1021%2Fom00130a008},\n volume = {4},\n year = {1985}\n}\n\n",
+                    "Dewar_1985b": "@article{Dewar_1985b,\n author = {Michael J. S. Dewar and Mary K. Holloway and Gilbert L. Grady and James J. P. Stewart},\n doi = {10.1021/om00130a010},\n journal = {Organometallics},\n month = {nov},\n number = {11},\n pages = {1973--1980},\n publisher = {American Chemical Society ({ACS})},\n title = {Ground states of molecules. Part 79. {MNDO} calculations for compounds containing lead},\n url = {https://doi.org/10.1021%2Fom00130a010},\n volume = {4},\n year = {1985}\n}\n\n",
+                    "Dewar_1985c": "@article{Dewar_1985c,\n author = {Michael J. S. Dewar and Eve G. Zoebisch and Eamonn F. Healy and James J. P. Stewart},\n doi = {10.1021/ja00299a024},\n journal = {Journal of the American Chemical Society},\n month = {jun},\n number = {13},\n pages = {3902--3909},\n publisher = {American Chemical Society ({ACS})},\n title = {Development and use of quantum mechanical molecular models. 76. {AM}1: a new general purpose quantum mechanical molecular model},\n url = {https://doi.org/10.1021%2Fja00299a024},\n volume = {107},\n year = {1985}\n}\n\n",
+                    "Dewar_1988": "@article{Dewar_1988,\n author = {Michael J.S. Dewar and Eve G. Zoebisch},\n doi = {10.1016/0166-1280(88)80074-5},\n journal = {Journal of Molecular Structure: {THEOCHEM}},\n month = {nov},\n pages = {1--21},\n publisher = {Elsevier {BV}},\n title = {Extension of {AM}1 to the halogens},\n url = {https://doi.org/10.1016%2F0166-1280%2888%2980074-5},\n volume = {180},\n year = {1988}\n}\n\n",
+                    "Dewar_1990": "@article{Dewar_1990,\n author = {Michael J. S. Dewar and Andrew J. Holder},\n doi = {10.1021/om00116a031},\n journal = {Organometallics},\n month = {feb},\n number = {2},\n pages = {508--511},\n publisher = {American Chemical Society ({ACS})},\n title = {{AM}1 parameters for aluminum},\n url = {https://doi.org/10.1021%2Fom00116a031},\n volume = {9},\n year = {1990}\n}\n\n",
+                    "Dewar_1987b": "@article{Dewar_1987b,\n author = {Michael J. S. Dewar and Caoxian. Jie},\n doi = {10.1021/om00150a020},\n journal = {Organometallics},\n month = {jul},\n number = {7},\n pages = {1486--1490},\n publisher = {American Chemical Society ({ACS})},\n title = {{AM}1 calculations for compounds containing silicon},\n url = {https://doi.org/10.1021%2Fom00150a020},\n volume = {6},\n year = {1987}\n}\n\n",
+                    "Dewar_1989": "@article{Dewar_1989,\n author = {Michael J.S. Dewar and Caoxion Jie},\n doi = {10.1016/0166-1280(89)85145-0},\n journal = {Journal of Molecular Structure: {THEOCHEM}},\n month = {may},\n pages = {1--13},\n publisher = {Elsevier {BV}},\n title = {{AM}1 parameters for phosphorus},\n url = {https://doi.org/10.1016%2F0166-1280%2889%2985145-0},\n volume = {187},\n year = {1989}\n}\n\n",
+                    "Dewar_1990b": "@article{Dewar_1990b,\n author = {Michael J. S. Dewar and Yate Ching Yuan},\n doi = {10.1021/ic00344a045},\n journal = {Inorganic Chemistry},\n month = {sep},\n number = {19},\n pages = {3881--3890},\n publisher = {American Chemical Society ({ACS})},\n title = {{AM}1 parameters for sulfur},\n url = {https://doi.org/10.1021%2Fic00344a045},\n volume = {29},\n year = {1990}\n}\n\n",
+                    "Dewar_1988b": "@article{Dewar_1988b,\n author = {Michael J. S. Dewar and Kenneth M. Merz},\n doi = {10.1021/om00092a044},\n journal = {Organometallics},\n month = {feb},\n number = {2},\n pages = {522--524},\n publisher = {American Chemical Society ({ACS})},\n title = {{AM}1 parameters for zinc},\n url = {https://doi.org/10.1021%2Fom00092a044},\n volume = {7},\n year = {1988}\n}\n\n",
+                    "Dewar_1989b": "@article{Dewar_1989b,\n author = {Michael J. S. Dewar and Caoxian. Jie},\n doi = {10.1021/om00108a028},\n journal = {Organometallics},\n month = {jun},\n number = {6},\n pages = {1544--1547},\n publisher = {American Chemical Society ({ACS})},\n title = {{AM}1 calculations for compounds containing germanium},\n url = {https://doi.org/10.1021%2Fom00108a028},\n volume = {8},\n year = {1989}\n}\n\n",
+                    "Voityuk_2000": "@article{Voityuk_2000,\n author = {Alexander A. Voityuk and Notker R\u00f6sch},\n doi = {10.1021/jp994394w},\n journal = {The Journal of Physical Chemistry A},\n month = {may},\n number = {17},\n pages = {4089--4094},\n publisher = {American Chemical Society ({ACS})},\n title = {{AM}1/d Parameters for Molybdenum},\n url = {https://doi.org/10.1021%2Fjp994394w},\n volume = {104},\n year = {2000}\n}\n\n",
+                    "Dewar_1989c": "@article{Dewar_1989c,\n author = {Michael J. S. Dewar and Caoxian. Jie},\n doi = {10.1021/om00108a029},\n journal = {Organometallics},\n month = {jun},\n number = {6},\n pages = {1547--1549},\n publisher = {American Chemical Society ({ACS})},\n title = {{AM}1 calculations for compounds containing mercury},\n url = {https://doi.org/10.1021%2Fom00108a029},\n volume = {8},\n year = {1989}\n}\n\n",
+                    "Rocha_2006": "@article{Rocha_2006,\n author = {Gerd B. Rocha and Ricardo O. Freire and Alfredo M. Simas and James J. P. Stewart},\n doi = {10.1002/jcc.20425},\n journal = {Journal of Computational Chemistry},\n month = {jul},\n number = {10},\n pages = {1101--1111},\n publisher = {Wiley},\n title = {{RM}1: A reparameterization of {AM}1 for H, C, N, O, P, S, F, Cl, Br, and I},\n url = {https://doi.org/10.1002%2Fjcc.20425},\n volume = {27},\n year = {2006}\n}\n\n",
+                    "Thiel_1996": "@article{Thiel_1996,\n author = {Walter Thiel and Alexander A. Voityuk},\n doi = {10.1021/jp952148o},\n journal = {The Journal of Physical Chemistry},\n month = {jan},\n number = {2},\n pages = {616--626},\n publisher = {American Chemical Society ({ACS})},\n title = {Extension of {MNDO} to d Orbitals:~ Parameters and Results for the Second-Row Elements and for the Zinc Group},\n url = {https://doi.org/10.1021%2Fjp952148o},\n volume = {100},\n year = {1996}\n}\n\n",
+                    "Thiel_1992": "@article{Thiel_1992,\n author = {Walter Thiel and Alexander A. Voityuk},\n doi = {10.1007/bf01134863},\n journal = {Theoretica Chimica Acta},\n number = {6},\n pages = {391--404},\n publisher = {Springer Science and Business Media {LLC}},\n title = {Extension of the {MNDO} formalism tod orbitals: Integral approximations and preliminary numerical results},\n url = {https://doi.org/10.1007%2Fbf01134863},\n volume = {81},\n year = {1992}\n}\n\n",
+                    "Grimme_2010": "@article{Grimme_2010,\n author = {Stefan Grimme and Jens Antony and Stephan Ehrlich and Helge Krieg},\n doi = {10.1063/1.3382344},\n journal = {The Journal of Chemical Physics},\n month = {apr},\n number = {15},\n pages = {154104},\n publisher = {{AIP} Publishing},\n title = {A consistent and accurate ab initio parametrization of density functional dispersion correction ({DFT}-D) for the 94 elements H-Pu},\n url = {https://doi.org/10.1063%2F1.3382344},\n volume = {132},\n year = {2010}\n}\n\n",
+                    "Korth_2010": "@article{Korth_2010,\n author = {Martin Korth},\n doi = {10.1021/ct100408b},\n journal = {Journal of Chemical Theory and Computation},\n month = {nov},\n number = {12},\n pages = {3808--3816},\n publisher = {American Chemical Society ({ACS})},\n title = {Third-Generation Hydrogen-Bonding Corrections for Semiempirical {QM} Methods and Force Fields},\n url = {https://doi.org/10.1021%2Fct100408b},\n volume = {6},\n year = {2010}\n}\n\n",
+                    "Korth_2009": "@article{Korth_2009,\n author = {Martin Korth and Michal Pito{\\v{n}}{\\'{a}}k and Jan {\\v{R}}ez{\\'{a}}{\\v{c}} and Pavel Hobza},\n doi = {10.1021/ct900541n},\n journal = {Journal of Chemical Theory and Computation},\n month = {dec},\n number = {1},\n pages = {344--352},\n publisher = {American Chemical Society ({ACS})},\n title = {A Transferable H-Bonding Correction for Semiempirical Quantum-Chemical Methods},\n url = {https://doi.org/10.1021%2Fct900541n},\n volume = {6},\n year = {2009}\n}\n\n",
+                    "Rezac_2009": "@article{Rezac_2009,\n author = {Jan {\\v{R}}ez{\\'{a}}{\\v{c}} and Jind{\\v{r}}ich Fanfrl{\\'{\\i}}k and Dennis Salahub and Pavel Hobza},\n doi = {10.1021/ct9000922},\n journal = {Journal of Chemical Theory and Computation},\n month = {may},\n number = {7},\n pages = {1749--1760},\n publisher = {American Chemical Society ({ACS})},\n title = {Semiempirical Quantum Chemical {PM}6 Method Augmented by Dispersion and H-Bonding Correction Terms Reliably Describes Various Types of Noncovalent Complexes},\n url = {https://doi.org/10.1021%2Fct9000922},\n volume = {5},\n year = {2009}\n}\n\n",
+                    "Rezac_2011": "@article{Rezac_2011,\n author = {Jan {\\v{R}}ez{\\'{a}}{\\v{c}} and Pavel Hobza},\n doi = {10.1021/ct200751e},\n journal = {Journal of Chemical Theory and Computation},\n month = {dec},\n number = {1},\n pages = {141--151},\n publisher = {American Chemical Society ({ACS})},\n title = {Advanced Corrections of Hydrogen Bonding and Dispersion for Semiempirical Quantum Mechanical Methods},\n url = {https://doi.org/10.1021%2Fct200751e},\n volume = {8},\n year = {2011}\n}\n\n",
+                    "Vorlova_2015": "@article{Vorlova_2015,\n author = {Barbora Vorlov{\\'{a}} and Dana Nachtigallov{\\'{a}} and Jana Jir{\\'{a}}skov{\\'{a}}-Van{\\'{\\i}}{\\v{c}}kov{\\'{a}} and Haresh Ajani and Petr Jansa and Jan {\\v{R}}ez{\\'{a}}{\\v{c}} and Jind{\\v{r}}ich Fanfrl{\\'{\\i}}k and Michal Otyepka and Pavel Hobza and Jan Konvalinka and Martin Lep{\\v{s}}{\\'{\\i}}k},\n doi = {10.1016/j.ejmech.2014.10.043},\n journal = {European Journal of Medicinal Chemistry},\n month = {jan},\n pages = {189--197},\n publisher = {Elsevier {BV}},\n title = {Malonate-based inhibitors of mammalian serine racemase: Kinetic characterization and structure-based computational study},\n url = {https://doi.org/10.1016%2Fj.ejmech.2014.10.043},\n volume = {89},\n year = {2015}\n}\n\n",
+                    "Brahmkshatriya_2013": "@article{Brahmkshatriya_2013,\n author = {Pathik S. Brahmkshatriya and Petr Dobes and Jindrich Fanfrlik and Jan Rezac and Kamil Paruch and Agnieszka Bronowska and Martin Leps{\\'{\\i}}k and Pavel Hobza},\n doi = {10.2174/1573409911309010011},\n journal = {Current Computer Aided-Drug Design},\n month = {jan},\n number = {1},\n pages = {118--129},\n publisher = {Bentham Science Publishers Ltd.},\n title = {Quantum Mechanical Scoring: Structural and Energetic Insights into Cyclin-Dependent Kinase 2 Inhibition by Pyrazolo[1,5-a]pyrimidines},\n url = {https://doi.org/10.2174%2F1573409911309010011},\n volume = {9},\n year = {2013}\n}\n\n",
+                    "Baker_1986": "@article{Baker_1986,\n author = {Jon Baker},\n doi = {10.1002/jcc.540070402},\n journal = {Journal of Computational Chemistry},\n month = {aug},\n number = {4},\n pages = {385--395},\n publisher = {Wiley},\n title = {An algorithm for the location of transition states},\n url = {https://doi.org/10.1002%2Fjcc.540070402},\n volume = {7},\n year = {1986}\n}\n\n",
+                    "Broyden_1970": "@article{Broyden_1970,\n author = {C. G. BROYDEN},\n doi = {10.1093/imamat/6.3.222},\n journal = {{IMA} Journal of Applied Mathematics},\n number = {3},\n pages = {222--231},\n publisher = {Oxford University Press ({OUP})},\n title = {The Convergence of a Class of Double-rank Minimization Algorithms},\n url = {https://doi.org/10.1093%2Fimamat%2F6.3.222},\n volume = {6},\n year = {1970}\n}\n\n",
+                    "Fletcher_1970": "@article{Fletcher_1970,\n author = {R. Fletcher},\n doi = {10.1093/comjnl/13.3.317},\n journal = {The Computer Journal},\n month = {mar},\n number = {3},\n pages = {317--322},\n publisher = {Oxford University Press ({OUP})},\n title = {A new approach to variable metric algorithms},\n url = {https://doi.org/10.1093%2Fcomjnl%2F13.3.317},\n volume = {13},\n year = {1970}\n}\n\n",
+                    "Goldfarb_1970": "@article{Goldfarb_1970,\n author = {Donald Goldfarb},\n doi = {10.2307/2004873},\n journal = {Mathematics of Computation},\n month = {jan},\n number = {109},\n pages = {23},\n publisher = {{JSTOR}},\n title = {A Family of Variable-Metric Methods Derived by Variational Means},\n url = {https://doi.org/10.2307%2F2004873},\n volume = {24},\n year = {1970}\n}\n\n",
+                    "Shanno_1970": "@article{Shanno_1970,\n author = {D. F. Shanno},\n doi = {10.2307/2004840},\n journal = {Mathematics of Computation},\n month = {jul},\n number = {111},\n pages = {647},\n publisher = {{JSTOR}},\n title = {Conditioning of Quasi-Newton Methods for Function Minimization},\n url = {https://doi.org/10.2307%2F2004840},\n volume = {24},\n year = {1970}\n}\n\n",
+                    "Thiel_1988": "@article{Thiel_1988,\n author = {Walter Thiel},\n doi = {10.1016/0166-1280(88)80403-2},\n journal = {Journal of Molecular Structure: {THEOCHEM}},\n month = {jan},\n pages = {415--429},\n publisher = {Elsevier {BV}},\n title = {Fast semiempirical geometry optimizations},\n url = {https://doi.org/10.1016%2F0166-1280%2888%2980403-2},\n volume = {163},\n year = {1988}\n}\n\n",
+                    "Nocedal_1980": "@article{Nocedal_1980,\n author = {Jorge Nocedal},\n doi = {10.2307/2006193},\n journal = {Mathematics of Computation},\n month = {jul},\n number = {151},\n pages = {773},\n publisher = {{JSTOR}},\n title = {Updating Quasi-Newton Matrices with Limited Storage},\n url = {https://doi.org/10.2307%2F2006193},\n volume = {35},\n year = {1980}\n}\n\n",
+                    "McIver_1971": "@article{McIver_1971,\n author = {J.W. McIver and A. Komornicki},\n doi = {10.1016/0009-2614(71)80294-4},\n journal = {Chemical Physics Letters},\n month = {aug},\n number = {3},\n pages = {303--306},\n publisher = {Elsevier {BV}},\n title = {Rapid geometry optimization for semi-empirical molecular orbital methods},\n url = {https://doi.org/10.1016%2F0009-2614%2871%2980294-4},\n volume = {10},\n year = {1971}\n}\n\n",
+                    "McIver_1972": "@article{McIver_1972,\n author = {James W. McIver and Andrew Komornicki},\n doi = {10.1021/ja00763a011},\n journal = {Journal of the American Chemical Society},\n month = {apr},\n number = {8},\n pages = {2625--2633},\n publisher = {American Chemical Society ({ACS})},\n title = {Structure of transition states in organic reactions. General theory and an application to the cyclobutene-butadiene isomerization using a semiempirical molecular orbital method},\n url = {https://doi.org/10.1021%2Fja00763a011},\n volume = {94},\n year = {1972}\n}\n\n",
+                    "Bartels_1972": "@techreport{Bartels_1972,\n author = {R. H. Bartels},\n institution = {Center for Numerical Analysis, University of Texas at Austin},\n month = {apr},\n number = {CNA-44},\n title = {Nonlinear least squares without derivatives: An application of the QR matrix decomposition.},\n url = {ftp://ftp.ma.utexas.edu/pub/CNA/cna44.pdf},\n year = {1972}\n}\n\n"
+                }
             },
             "subflowchart": {
                 "item": "object",
@@ -92,16 +159,21 @@
                         "extension": null,
                         "attributes": {
                             "_uuid": 1,
+                            "module": null,
                             "_title": "Start",
                             "_description": "",
                             "_id": null,
                             "extension": null,
                             "_visited": true,
+                            "_references": null,
+                            "_jinja_env": null,
+                            "_graphs": null,
                             "parameters": null,
                             "x": 150.0,
                             "y": 35.0,
                             "w": 200,
-                            "h": 50
+                            "h": 50,
+                            "bibliography": {}
                         }
                     },
                     {
@@ -111,11 +183,15 @@
                         "extension": "Optimization",
                         "attributes": {
                             "_uuid": 232043177810496069807776503006134339839,
+                            "module": null,
                             "_title": "Optimization",
                             "_description": "A structural optimization",
                             "_id": null,
                             "extension": "Optimization",
                             "_visited": true,
+                            "_references": null,
+                            "_jinja_env": null,
+                            "_graphs": null,
                             "parameters": {
                                 "__class__": "OptimizationParameters",
                                 "__module__": "mopac_step.optimization_parameters",
@@ -131,6 +207,10 @@
                                     "value": "precise",
                                     "units": null
                                 },
+                                "calculate gradients": {
+                                    "value": "yes",
+                                    "units": null
+                                },
                                 "relative": {
                                     "value": "0.1",
                                     "units": null
@@ -144,7 +224,16 @@
                                     "units": null
                                 },
                                 "results": {
-                                    "value": {},
+                                    "value": {
+                                        "AREA": {
+                                            "table": "results",
+                                            "column": "area"
+                                        },
+                                        "VOLUME": {
+                                            "table": "results",
+                                            "column": "volume"
+                                        }
+                                    },
                                     "units": null
                                 },
                                 "create tables": {
@@ -176,6 +265,7 @@
                             "y": 105.0,
                             "w": 200,
                             "h": 50,
+                            "bibliography": {},
                             "_long_header": "",
                             "keywords": []
                         }
@@ -187,11 +277,15 @@
                         "extension": "Thermodynamics",
                         "attributes": {
                             "_uuid": 188013222465373474710990500187980251721,
+                            "module": null,
                             "_title": "Thermodynamics",
                             "_description": "Thermodynamic functions",
                             "_id": null,
                             "extension": "Thermodynamics",
                             "_visited": false,
+                            "_references": null,
+                            "_jinja_env": null,
+                            "_graphs": null,
                             "parameters": {
                                 "__class__": "ThermodynamicsParameters",
                                 "__module__": "mopac_step.thermodynamics_parameters",
@@ -205,6 +299,10 @@
                                 },
                                 "convergence": {
                                     "value": "normal",
+                                    "units": null
+                                },
+                                "calculate gradients": {
+                                    "value": "yes",
                                     "units": null
                                 },
                                 "relative": {
@@ -221,10 +319,6 @@
                                 },
                                 "results": {
                                     "value": {
-                                        "AREA": {
-                                            "table": "results",
-                                            "column": "area"
-                                        },
                                         "DIPOLE": {
                                             "table": "results",
                                             "column": "dipole"
@@ -236,10 +330,6 @@
                                         "IONIZATION_POTENTIAL": {
                                             "table": "results",
                                             "column": "ionization_potential"
-                                        },
-                                        "VOLUME": {
-                                            "table": "results",
-                                            "column": "volume"
                                         },
                                         "ZERO_POINT_ENERGY": {
                                             "table": "results",
@@ -273,6 +363,7 @@
                             "y": 175.0,
                             "w": 200,
                             "h": 50,
+                            "bibliography": {},
                             "_long_header": "",
                             "keywords": []
                         }
@@ -286,6 +377,7 @@
                         "edge_type": "execution",
                         "edge_subtype": "next",
                         "attributes": {
+                            "arrow_id": 164,
                             "anchor1": "s",
                             "anchor2": "n",
                             "coords": [
@@ -293,8 +385,7 @@
                                 60,
                                 150,
                                 80
-                            ],
-                            "arrow_id": 32
+                            ]
                         }
                     },
                     {
@@ -304,6 +395,7 @@
                         "edge_type": "execution",
                         "edge_subtype": "next",
                         "attributes": {
+                            "arrow_id": 165,
                             "anchor1": "s",
                             "anchor2": "n",
                             "coords": [
@@ -311,8 +403,7 @@
                                 130,
                                 150,
                                 150
-                            ],
-                            "arrow_id": 53
+                            ]
                         }
                     }
                 ]
@@ -334,16 +425,21 @@
                 "value": "",
                 "variable_name": "",
                 "_uuid": 284526908988222275671611747546041664611,
+                "module": null,
                 "_title": "Table",
                 "_description": "",
                 "_id": null,
                 "extension": "Table",
                 "_visited": true,
+                "_references": null,
+                "_jinja_env": null,
+                "_graphs": null,
                 "parameters": null,
                 "x": 150,
                 "y": 245,
                 "w": 200,
-                "h": 50
+                "h": 50,
+                "bibliography": {}
             }
         }
     ],
@@ -355,6 +451,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
+                "arrow_id": 74,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -362,8 +459,7 @@
                     60,
                     150,
                     80
-                ],
-                "arrow_id": 115
+                ]
             }
         },
         {
@@ -373,6 +469,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
+                "arrow_id": 78,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -380,8 +477,7 @@
                     130,
                     150,
                     150
-                ],
-                "arrow_id": 119
+                ]
             }
         },
         {
@@ -391,6 +487,7 @@
             "edge_type": "execution",
             "edge_subtype": "next",
             "attributes": {
+                "arrow_id": 82,
                 "anchor1": "s",
                 "anchor2": "n",
                 "coords": [
@@ -398,8 +495,7 @@
                     200,
                     150,
                     220
-                ],
-                "arrow_id": 172
+                ]
             }
         }
     ]
