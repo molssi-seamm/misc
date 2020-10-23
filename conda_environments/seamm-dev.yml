@@ -15,7 +15,6 @@ dependencies:
     # other dependencies that are in conda
   - attrs
   - colorama
-  - configargparse
   - cycler
   - docutils
   - fasteners
@@ -47,24 +46,25 @@ dependencies:
   - pip:
         # SEAMM
       - seamm
-      - seamm_jobserver
-      - seamm_util
-      - seamm_widgets
-      - seamm_ff_util
+      - seamm-jobserver
+      - seamm-util
+      - seamm-widgets
+      - seamm-ff-util
       - molsystem
       - reference-handler
-      - custom_step
-      - forcefield_step
-      - from_smiles_step
-      - lammps_step
-      - loop_step
-      - mopac_step
-      - packmol_step
-      - psi4_step
-      - read_structure_step
-      - solvate_step
-      - supercell_step
-      - table_step
+      - control-parameters-step
+      - custom-step
+      - forcefield-step
+      - from-smiles-step
+      - lammps-step
+      - loop-step
+      - mopac-step
+      - packmol-step
+      - psi4-step
+      - read-structure-step
+      - solvate-step
+      - supercell-step
+      - table-step
 
         # Needed for development
       - commonmark
