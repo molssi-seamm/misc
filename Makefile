@@ -40,8 +40,10 @@ COREDIRS := \
 	misc
 
 PLUGINDIRS := \
-	cassandra_step \
+	control_parameters_step \
+	crystal_builder_step \
 	custom_step \
+	dftbplus_step \
 	forcefield_step \
 	from_smiles_step \
 	lammps_step \
@@ -50,6 +52,7 @@ PLUGINDIRS := \
 	packmol_step \
 	psi4_step \
 	read_structure_step \
+	set_cell_step \
 	solvate_step \
 	supercell_step \
 	table_step
@@ -71,48 +74,40 @@ install: core plugins ## Install all modules
 uninstall: uninstall-core uninstall-plugins ## Remove the core and plugins repositories
 
 core: $(COREDIRS) ## Install the core modules
-	$(MAKE) -C molsystem install
-	$(MAKE) -C seamm_util install
-	$(MAKE) -C seamm install
-	$(MAKE) -C seamm_widgets install
-	$(MAKE) -C seamm_ff_util install
-	$(MAKE) -C seamm_jobserver install
-	$(MAKE) -C reference_handler install
+	@for dir in $(COREDIRS); \
+        do \
+	   if [ -d $$dir ] ;\
+	   then \
+		$(MAKE) -C $$dir install ;\
+	   fi; \
+        done
 
 plugins: $(PLUGINDIRS)  ## Install the plug-ins
-	$(MAKE) -C custom_step install
-	$(MAKE) -C forcefield_step install
-	$(MAKE) -C from_smiles_step install
-	$(MAKE) -C lammps_step install
-	$(MAKE) -C loop_step install
-	$(MAKE) -C mopac_step install
-	$(MAKE) -C packmol_step install
-	$(MAKE) -C psi4_step install
-	$(MAKE) -C read_structure_step install
-	$(MAKE) -C solvate_step install
-	$(MAKE) -C table_step install
+	@for dir in $(PLUGINDIRS); \
+        do \
+	   if [ -d $$dir ] ;\
+	   then \
+		$(MAKE) -C $$dir install ;\
+	   fi; \
+        done
 
 uninstall-core: $(COREDIRS) ## Uninstall the core parts of SEAMM from the environment
-	$(MAKE) -C molsystem uninstall
-	$(MAKE) -C seamm_util uninstall
-	$(MAKE) -C seamm uninstall
-	$(MAKE) -C seamm_widgets uninstall
-	$(MAKE) -C seamm_ff_util uninstall
-	$(MAKE) -C seamm_jobserver uninstall
-	$(MAKE) -C reference_handler uninstall
+	@for dir in $(COREDIRS); \
+        do \
+	   if [ -d $$dir ] ;\
+	   then \
+		$(MAKE) -C $$dir uninstall ;\
+	   fi; \
+        done
 
 uninstall-plugins: $(PLUGINDIRS) ## Uninstall the plugins from the environment
-	$(MAKE) -C custom_step uninstall
-	$(MAKE) -C forcefield_step uninstall
-	$(MAKE) -C from_smiles_step uninstall
-	$(MAKE) -C lammps_step uninstall
-	$(MAKE) -C loop_step uninstall
-	$(MAKE) -C mopac_step uninstall
-	$(MAKE) -C packmol_step uninstall
-	$(MAKE) -C psi4_step uninstall
-	$(MAKE) -C read_structure_step uninstall
-	$(MAKE) -C solvate_step uninstall
-	$(MAKE) -C table_step uninstall
+	@for dir in $(PLUGINDIRS); \
+        do \
+	   if [ -d $$dir ] ;\
+	   then \
+		$(MAKE) -C $$dir uninstall ;\
+	   fi; \
+        done
 
 status: ## Get the status for the modules
 	@for dir in $(SUBDIRS); \
