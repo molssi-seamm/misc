@@ -9,6 +9,7 @@ dependencies:
   - tk=8.6.7
   - pip
   - rdkit
+  - dftbplus-tools
   - openkim-models
   - kim-query
   
