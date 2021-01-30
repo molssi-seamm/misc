@@ -55,6 +55,7 @@ PLUGINDIRS := \
 	set_cell_step \
 	solvate_step \
 	supercell_step \
+	system_step \
 	table_step
 
 DASHBOARD = seamm_dashboard
