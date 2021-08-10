@@ -36,8 +36,7 @@ COREDIRS := \
 	seamm_widgets \
 	seamm_ff_util \
 	seamm_jobserver \
-	reference_handler \
-	misc
+	reference_handler
 
 PLUGINDIRS := \
 	control_parameters_step \
